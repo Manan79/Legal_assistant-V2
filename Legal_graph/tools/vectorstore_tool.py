@@ -1,4 +1,4 @@
-
+from langchain.tools import tool
 from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient, models
@@ -27,7 +27,7 @@ vector_store = QdrantVectorStore(
     sparse_vector_name="sparse",
 )
 
-
+@tool
 async def get_retrieved_results(query: str , k: int = 3):
     """This tools is used for retrieving results from the vectordatabase
     args:

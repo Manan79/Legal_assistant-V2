@@ -9,6 +9,7 @@ langchain-openrouter
 langchain-openai
 langchain-groq
 langchain-text-splitters
+langchain-tavily
 openai
 fastembed
 langchain-qdrant
