@@ -1,0 +1,17 @@
+# Main Libraries
+langchain
+langgraph
+langsmith
+langchain-community
+
+# Libararies for LLM integration
+langchain-openrouter
+langchain-openai
+langchain-groq
+langchain-text-splitters
+openai
+fastembed
+langchain-qdrant
+pymupdf4llm
+nemoguardrails
+python-dotenv
