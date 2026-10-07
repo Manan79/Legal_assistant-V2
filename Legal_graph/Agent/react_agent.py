@@ -17,6 +17,7 @@ from Legal_graph.Prompts.System_prompt import (
     LEGAL_SYSTEM_PROMPT_V3,
 )
 from Legal_graph.tools.vectorstore_tool import get_retrieved_results
+from Legal_graph.tools.websearch_tool import websearch
 from Legal_graph.Gaurdrails.gaurdrails import rails, parse_nemo_response
 
 
@@ -73,7 +74,7 @@ async def main():
     system_prompt = select_prompt_version()
 
     # Build the ReAct agent
-    tools = [get_retrieved_results]
+    tools = [get_retrieved_results, websearch]
     agent = create_agent(
         model=openrouter_model(),
         tools=tools,

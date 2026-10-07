@@ -1,6 +1,7 @@
 from langchain.tools import tool
 from langchain_tavily import TavilySearch
-
+from dotenv import load_dotenv
+load_dotenv()
 
 @tool("websearch")
 def websearch(query):
