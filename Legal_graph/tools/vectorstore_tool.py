@@ -28,13 +28,13 @@ vector_store = QdrantVectorStore(
 )
 
 @tool
-async def get_retrieved_results(query: str , k: int = 3):
+def get_retrieved_results(query: str , k: int = 3):
     """This tools is used for retrieving results from the vectordatabase
     args:
         query,
         k : number of retireved chunks
     """
-    results = await vector_store.similarity_search_with_score(
+    results =  vector_store.similarity_search_with_score(
         query= query , k=k,
     )
 

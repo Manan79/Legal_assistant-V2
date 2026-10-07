@@ -9,3 +9,10 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+FINAL_CLARIFICATION.md
+FINAL_VERIFICATION.md
+GUARDRAILS_EXPLANATION.md
+VERIFICATION_TEST_RESULTS.md
+changes_summary.md
+plan.md

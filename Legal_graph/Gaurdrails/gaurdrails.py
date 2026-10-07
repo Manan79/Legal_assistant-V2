@@ -1,9 +1,9 @@
-from Legal_graph.Gaurdrails.colang_rules import COLANG_CONTENT,YAML_CONTENT
+from Legal_graph.Gaurdrails.colang_rules import COLANG_CONTENT, YAML_CONTENT
 import re
 from typing import Optional
 from nemoguardrails import RailsConfig, LLMRails
 from nemoguardrails.actions import action
-from langchain_groq import ChatGroq
+from Legal_graph.Agent.models import openrouter_model
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -38,6 +38,11 @@ def parse_nemo_response(raw):
         clean  = BLOCK_RE.sub("", text).strip()
         return clean, True, reason, False, False
 
+    # Non-blocked response: check for scripted dialog or RAG pass-through
+    is_dialog = text.startswith("DIALOG:")
+    needs_rag = text.strip() == "QUERY_PASSED"
+    clean_text = text.replace("DIALOG:", "", 1).strip() if is_dialog else text
+    return clean_text, False, None, is_dialog, needs_rag
 
 
 @action(is_system_action=True)
@@ -66,6 +71,5 @@ def build_rails(llm) -> LLMRails:
     return rails
 
 
-llm   = ChatGroq(model='openai/gpt-oss-120b', temperature=0)
+llm   = openrouter_model()
 rails = build_rails(llm)
-
