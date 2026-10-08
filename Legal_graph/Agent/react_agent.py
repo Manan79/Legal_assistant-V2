@@ -11,7 +11,7 @@ if project_root not in sys.path:
 from langchain.agents import create_agent
 from Legal_graph.Agent.models import openrouter_model
 from Legal_graph.Prompts.System_prompt import (
-    LEGAL_SYSTEM_PROMPT,
+    
     LEGAL_SYSTEM_PROMPT_V1,
     LEGAL_SYSTEM_PROMPT_V2,
     LEGAL_SYSTEM_PROMPT_V3,
@@ -30,16 +30,7 @@ PROMPT_VERSIONS = {
 }
 
 
-def select_prompt_version() -> str:
-    """Pick a system prompt version from --prompt-version flag or default."""
-    version_key = "v2"  # default
-    for i, arg in enumerate(sys.argv):
-        if arg == "--prompt-version" and i + 1 < len(sys.argv):
-            version_key = sys.argv[i + 1].lower()
-    if version_key not in PROMPT_VERSIONS:
-        print(f"⚠ Unknown prompt version '{version_key}', using v2.")
-        version_key = "v2"
-    return PROMPT_VERSIONS[version_key]
+
 
 
 # ── Guardrails gate ─────────────────────────────────────────────────────────
@@ -70,8 +61,7 @@ async def check_guardrails(user_message: str):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 async def main():
-    # Select prompt version
-    system_prompt = select_prompt_version()
+    system_prompt = PROMPT_VERSIONS['v2']
 
     # Build the ReAct agent
     tools = [get_retrieved_results, websearch]
@@ -96,6 +86,8 @@ async def main():
     response = agent.invoke(
         {"messages": [{"role": "user", "content": query}]}
     )
+    print("-"*10,"Agent Response", "-"*10)
+    print(" ")
     print(response["messages"][-1].content)
 
 

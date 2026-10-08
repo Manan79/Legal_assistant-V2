@@ -153,6 +153,3 @@ OUTPUT FORMAT:
 - Professional, formal, legally precise tone throughout.
 """
 
-
-# ── Default alias — points at V2 (chain-of-thought) ─────────────────────────
-LEGAL_SYSTEM_PROMPT = LEGAL_SYSTEM_PROMPT_V2
