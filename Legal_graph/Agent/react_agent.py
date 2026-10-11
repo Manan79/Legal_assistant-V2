@@ -11,7 +11,6 @@ if project_root not in sys.path:
 from langchain.agents import create_agent
 from Legal_graph.Agent.models import openrouter_model
 from Legal_graph.Prompts.System_prompt import (
-    
     LEGAL_SYSTEM_PROMPT_V1,
     LEGAL_SYSTEM_PROMPT_V2,
     LEGAL_SYSTEM_PROMPT_V3,
@@ -28,9 +27,6 @@ PROMPT_VERSIONS = {
     "v2": LEGAL_SYSTEM_PROMPT_V2,
     "v3": LEGAL_SYSTEM_PROMPT_V3,
 }
-
-
-
 
 
 # ── Guardrails gate ─────────────────────────────────────────────────────────
