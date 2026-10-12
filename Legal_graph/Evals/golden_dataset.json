@@ -1,0 +1,1096 @@
+{
+  "dataset_metadata": {
+    "title": "Indian Supreme Court 2025 Reportable Judgments - Legal AI Golden Evaluation Dataset",
+    "version": "1.0.0",
+    "created_date": "2025-04-15",
+    "description": "Benchmark evaluation dataset containing 20 curated legal questions, comprehensive ground truth answers, authoritative citations, statutory provisions, and verbatim context extracts derived from reportable 2025 Supreme Court of India judgments. Designed for evaluating RAG retrieval, legal reasoning, citation accuracy, and hallucination resistance across system prompt versions.",
+    "total_questions": 20,
+    "source_directory": "Legal_graph/2025/",
+    "domains_covered": [
+      "Criminal Law & Capital Sentencing",
+      "Criminal Law & Eyewitness Contradictions",
+      "Arbitration & Commercial Law",
+      "Service Law & Disciplinary Inquiries",
+      "Human Trafficking & Constitutional Law",
+      "Banking, Consumer Law & Real Estate Settlements",
+      "Constitutional Law & Higher Education PIL",
+      "Motor Accident Claims Tribunal (MACT)",
+      "Environmental Law & Wildlife Habitat Protection",
+      "Insolvency and Bankruptcy Code (IBC) - Appeals & Limitation",
+      "Specific Relief Act & Decree Execution",
+      "Criminal Law - Circumstantial Evidence & Motive",
+      "Insolvency and Bankruptcy Code (IBC) - Personal Guarantors & Article 226",
+      "Land Acquisition & Article 300A Property Rights",
+      "Narcotic Drugs and Psychotropic Substances Act (NDPS)",
+      "Taxation & Central Excise Limitation",
+      "Civil Procedure Code (CPC) - Order XXI Execution",
+      "Service Law - Malice in Law & Disciplinary Abuse",
+      "Criminal Procedure Code (CrPC) - Section 195(1)(a) Cognizance Bar",
+      "Service Law - Compassionate Appointment & Article 142 Relief"
+    ]
+  },
+  "questions": [
+    {
+      "id": "eval_001",
+      "question": "In Abdul Nassar vs. State of Kerala (2025), what principles did the Supreme Court apply regarding circumstantial evidence and capital punishment, and why was the death sentence commuted to life imprisonment?",
+      "ground_truth_answer": "In Abdul Nassar vs. State of Kerala (2025 INSC 35), the Supreme Court upheld the conviction of the appellant under Sections 302, 364A, and 201 of the Indian Penal Code (IPC) for the kidnapping and murder of an 11-year-old schoolboy, holding that the circumstantial evidence satisfied the Panchsheel principles established in Sharad Birdhichand Sarda. However, the Court commuted the death penalty to life imprisonment with a fixed minimum incarceration term of 25 years without remission under Section 354(3) CrPC. The Court reasoned that although the offence was brutal, the case did not meet the 'rarest of rare' threshold because the possibility of the accused's reformation and rehabilitation was not completely ruled out, and the state had not produced sufficient evidence demonstrating that the convict was beyond rehabilitation.",
+      "case_metadata": {
+        "case_name": "Abdul Nassar vs. The State Of Kerala",
+        "citation": "2025 INSC 35",
+        "judgment_date": "2025-01-07",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.R. Gavai, J.",
+          "Prashant Kumar Mishra, J.",
+          "K.V. Viswanathan, J."
+        ],
+        "source_pdf": "Abdul_Nassar_vs_The_State_Of_Kerala_on_7_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Criminal Law & Capital Sentencing",
+        "statutory_provisions": [
+          "Indian Penal Code, 1860 - Section 302",
+          "Indian Penal Code, 1860 - Section 364A",
+          "Indian Penal Code, 1860 - Section 201",
+          "Code of Criminal Procedure, 1973 - Section 354(3)",
+          "Indian Evidence Act, 1872 - Section 3"
+        ],
+        "keywords": [
+          "Circumstantial Evidence",
+          "Panchsheel Principles",
+          "Death Penalty Commutation",
+          "Rarest of Rare",
+          "Kidnapping for Ransom",
+          "Minimum 25 Years Sentence"
+        ]
+      },
+      "context_extract": "The normal rule is that the offence of murder is punishable with life imprisonment, and death penalty is an exception to be awarded only in the 'rarest of rare' cases. To sentence an accused to death, the court must be satisfied not only that the crime is heinous, but also that there is no probability of reformation or rehabilitation of the convict. Taking into consideration all mitigating and aggravating circumstances, we commute the death sentence to life imprisonment, with a direction that the appellant shall not be released before completing 25 years of actual imprisonment.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Panchsheel principles of circumstantial evidence (Sharad Birdhichand Sarda)",
+          "Dual test for death sentence: nature of crime and impossibility of reformation",
+          "Exercise of judicial discretion to prescribe fixed-term life imprisonment without remission"
+        ],
+        "statutory_provisions_required": [
+          "IPC Section 302",
+          "IPC Section 364A",
+          "CrPC Section 354(3)"
+        ],
+        "hallucination_traps": [
+          "Do not state that the appellant was acquitted; conviction was affirmed under Section 302/364A.",
+          "Do not claim the death penalty was affirmed.",
+          "Do not overlook the 25-year minimum imprisonment condition."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy",
+          "context_recall"
+        ]
+      }
+    },
+    {
+      "id": "eval_002",
+      "question": "Why did the Supreme Court acquit the accused in Abdul Wahid vs. State of Rajasthan (2025), and what deficiencies were highlighted regarding the testimony of the alleged eyewitness PW-1?",
+      "ground_truth_answer": "In Abdul Wahid vs. State of Rajasthan (2025 INSC 295), the Supreme Court set aside the concurrent conviction under Section 302 read with Section 34 of the Indian Penal Code (IPC) and acquitted the appellant. The Court held that the conviction rested exclusively on the uncorroborated testimony of PW-1 (an alleged injured eyewitness), whose evidence was riddled with fatal inconsistencies, material improvements, and contradictions when compared with his Section 161 CrPC police statement. Furthermore, the prosecution failed to recover any weapon or bloodstained clothes from the appellant, failed to explain the presence of independent witnesses who were not examined, and did not establish any prior meeting of minds or common intention under Section 34 IPC.",
+      "case_metadata": {
+        "case_name": "Abdul Wahid vs. The State Of Rajasthan",
+        "citation": "2025 INSC 295",
+        "judgment_date": "2025-02-28",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Abhay S. Oka, J.",
+          "Ujjal Bhuyan, J."
+        ],
+        "source_pdf": "Abdul_Wahid_vs_The_State_Of_Rajasthan_on_28_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Criminal Law & Eyewitness Contradictions",
+        "statutory_provisions": [
+          "Indian Penal Code, 1860 - Section 302",
+          "Indian Penal Code, 1860 - Section 34",
+          "Code of Criminal Procedure, 1973 - Section 161",
+          "Indian Evidence Act, 1872 - Section 3"
+        ],
+        "keywords": [
+          "Acquittal under Section 302/34",
+          "Eyewitness Testimony",
+          "Material Improvements",
+          "Section 161 Contradictions",
+          "Lack of Corroboration"
+        ]
+      },
+      "context_extract": "The solitary testimony of PW-1 is full of contradictions, omissions and material improvements. PW-1 in his police statement recorded under Section 161 Cr.P.C. did not attribute any specific overt act or assault to the appellant. No weapon of offence or bloodstained clothes were recovered from or at the instance of the appellant. In the absence of cogent corroborative evidence, it would be unsafe to base conviction under Section 302 read with Section 34 IPC on such tainted testimony.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Uncorroborated and inconsistent eyewitness testimony cannot sustain a murder conviction",
+          "Effect of material omissions in Section 161 CrPC statements amounting to contradictions",
+          "Absence of weapon recovery and absence of common intention under Section 34 IPC"
+        ],
+        "statutory_provisions_required": [
+          "IPC Section 302",
+          "IPC Section 34",
+          "CrPC Section 161"
+        ],
+        "hallucination_traps": [
+          "Do not claim that the accused was convicted or that their sentence was reduced; the accused was completely acquitted.",
+          "Do not fabricate recovery of a firearm or knife."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "legal_reasoning_rigor",
+          "citation_fidelity"
+        ]
+      }
+    },
+    {
+      "id": "eval_003",
+      "question": "In A.C. Chokshi Share Broker Private Limited vs. Jatin Pratap Desai (2025), can a spouse be held jointly liable for the stock trading debts of their partner, and what is the scope of appellate interference under Section 37 of the Arbitration Act?",
+      "ground_truth_answer": "In A.C. Chokshi Share Broker Private Limited vs. Jatin Pratap Desai (2025 INSC 174), the Supreme Court ruled that a spouse cannot be held vicariously or jointly liable for the unpaid debit balance of their partner's independent share trading account in the absence of an express written contract, authorization, or guarantee creating such liability. Addressing Section 37 of the Arbitration and Conciliation Act, 1996, the Court reiterated that the appellate court's supervisory jurisdiction is extremely narrow and strictly circumscribed by the grounds set forth in Section 34; the appellate court cannot re-appreciate evidence or substitute its view for that of the arbitral tribunal unless the award suffers from patent illegality or perverse interpretation.",
+      "case_metadata": {
+        "case_name": "A.C. Chokshi Share Broker Private Limited vs. Jatin Pratap Desai",
+        "citation": "2025 INSC 174",
+        "judgment_date": "2025-02-10",
+        "court": "Supreme Court of India",
+        "bench": [
+          "P.S. Narasimha, J.",
+          "Pankaj Mithal, J."
+        ],
+        "source_pdf": "Ac_Chokshi_Share_Broker_Private_Limited_vs_Jatin_Pratap_Desai_on_10_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Arbitration & Commercial Law",
+        "statutory_provisions": [
+          "Arbitration and Conciliation Act, 1996 - Section 34",
+          "Arbitration and Conciliation Act, 1996 - Section 37",
+          "Indian Contract Act, 1872 - Section 126",
+          "Bombay Stock Exchange (BSE) Bye-laws and Regulations"
+        ],
+        "keywords": [
+          "Section 37 Arbitration Act",
+          "Section 34 Patent Illegality",
+          "Spouse Liability for Trading Debts",
+          "Stock Broker Arbitration",
+          "Contractual Privity"
+        ]
+      },
+      "context_extract": "Under the regulatory framework of stock exchanges, every constituent maintains an independent client account. A spouse who operates an independent trading account cannot be fastened with joint and several liability for the debit balance of the other spouse's account in the absence of an express tripartite agreement or valid guarantee. The scope of interference under Section 37 of the Arbitration Act is identical to the narrow parameters under Section 34; courts cannot re-examine evidence or reverse an arbitral finding simply because another view is plausible.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "No joint liability for spouses in commercial stock trading without express agreement/guarantee",
+          "Scope of Section 37 appeal is circumscribed by Section 34 parameters",
+          "Appellate court cannot re-appreciate facts or substitute arbitral findings"
+        ],
+        "statutory_provisions_required": [
+          "Arbitration and Conciliation Act Section 34",
+          "Arbitration and Conciliation Act Section 37"
+        ],
+        "hallucination_traps": [
+          "Do not state that the wife was held liable.",
+          "Do not state that Section 37 allows full de novo appellate review on facts."
+        ],
+        "evaluation_metrics_targeted": [
+          "answer_relevance",
+          "faithfulness",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_004",
+      "question": "What did the Supreme Court hold in Airports Authority of India vs. Pradip Kumar Banerjee (2025) regarding the scope of intra-court appeals (MAT/LPA) against departmental disciplinary punishments under Article 226?",
+      "ground_truth_answer": "In Airports Authority of India vs. Pradip Kumar Banerjee (2025 INSC 149), the Supreme Court set aside the High Court Division Bench's judgment which had interfered with the punishment of dismissal from service imposed on a delinquent employee. The Supreme Court held that in exercising writ jurisdiction under Article 226, and particularly in an intra-court appeal (Letters Patent Appeal / MAT), the High Court does not sit as an appellate court over disciplinary proceedings. The scope of judicial review is confined to examining whether the inquiry was conducted in violation of principles of natural justice, statutory rules, or was plagued by perversity. The High Court cannot re-evaluate evidence or interfere with the quantum of punishment unless it is shockingly disproportionate.",
+      "case_metadata": {
+        "case_name": "Airports Authority Of India vs. Pradip Kumar Banerjee",
+        "citation": "2025 INSC 149",
+        "judgment_date": "2025-02-04",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Hrishikesh Roy, J.",
+          "S.V.N. Bhatti, J."
+        ],
+        "source_pdf": "Airports_Authority_Of_India_vs_Pradip_Kumar_Banerjee_on_4_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Service Law & Disciplinary Inquiries",
+        "statutory_provisions": [
+          "Constitution of India - Article 226",
+          "Constitution of India - Article 136",
+          "AAI Employees (Conduct, Discipline & Appeal) Regulations"
+        ],
+        "keywords": [
+          "Judicial Review of Disciplinary Inquiry",
+          "Intra-Court Appeal",
+          "Dismissal from Service",
+          "Proportionality of Punishment",
+          "Shocking to Judicial Conscience"
+        ]
+      },
+      "context_extract": "Judicial review under Article 226 of the Constitution in departmental disciplinary inquiries is directed not against the decision, but against the decision-making process. The Division Bench in an intra-court appeal exceeded its jurisdiction by re-evaluating the evidence recorded during the departmental inquiry and substituting the penalty of dismissal with a lesser punishment. Interference with punishment is permissible only when the penalty is shockingly disproportionate to the proved misconduct.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Judicial review is directed against decision-making process, not merits of decision",
+          "Division Bench in intra-court appeal cannot re-appreciate evidence as an appellate authority",
+          "Interference with punishment only if shockingly disproportionate"
+        ],
+        "statutory_provisions_required": [
+          "Constitution of India Article 226",
+          "Constitution of India Article 136"
+        ],
+        "hallucination_traps": [
+          "Do not state that the Supreme Court upheld the employee's reinstatement.",
+          "Do not claim the High Court has unlimited power to modify penalties at will."
+        ],
+        "evaluation_metrics_targeted": [
+          "context_relevance",
+          "faithfulness",
+          "legal_reasoning_rigor"
+        ]
+      }
+    },
+    {
+      "id": "eval_005",
+      "question": "In Ajay Malik vs. State of Uttarakhand (2025), why were charges under Section 370 IPC quashed, and what directions did the Supreme Court issue under Article 142 regarding domestic workers?",
+      "ground_truth_answer": "In Ajay Malik vs. State of Uttarakhand (2025 INSC 118), the Supreme Court quashed criminal charges framed under Section 370 IPC (trafficking of persons) against an employer of a domestic maid. The Court held that Section 370 IPC requires specific elements of recruitment, transportation, harboring, or receipt of a person by threat, force, deception, or abuse of power for the purpose of exploitation. The mere engagement of a domestic worker through a placement agency without confinement, coercion, or exploitation does not attract Section 370. Recognizing a critical legislative vacuum regarding the rights and welfare of domestic workers, the Court invoked Article 142 of the Constitution to direct the Central Government to constitute a National Expert Committee to draft comprehensive guidelines and welfare legislation for domestic workers.",
+      "case_metadata": {
+        "case_name": "Ajay Malik vs. State Of Uttarakhand",
+        "citation": "2025 INSC 118",
+        "judgment_date": "2025-01-29",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Surya Kant, J.",
+          "Ujjal Bhuyan, J."
+        ],
+        "source_pdf": "Ajay_Malik_vs_State_Of_Uttarakhand_on_29_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Human Trafficking & Constitutional Law",
+        "statutory_provisions": [
+          "Indian Penal Code, 1860 - Section 370",
+          "Constitution of India - Article 21",
+          "Constitution of India - Article 23",
+          "Constitution of India - Article 142"
+        ],
+        "keywords": [
+          "Section 370 IPC Trafficking",
+          "Domestic Workers Rights",
+          "Article 142 Directions",
+          "National Expert Committee",
+          "Quashing of Chargesheet"
+        ]
+      },
+      "context_extract": "Section 370 IPC requires proof of recruitment, transportation, harbouring, transfer or receipt of a person by threat, use of force, abduction, fraud or abuse of power for exploitation. The routine employment of a domestic worker arranged through an agency does not ipso facto constitute human trafficking under Section 370. To protect millions of vulnerable domestic workers from exploitation and provide statutory safeguards, this Court in exercise of powers under Article 142 directs the Union Government to constitute a National Expert Committee to formulate comprehensive national regulations.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Ingredients of Section 370 IPC: threat, coercion, or abuse of power for exploitation",
+          "Distinction between regular domestic employment and human trafficking",
+          "Invocation of Article 142 to direct executive/legislative action on domestic workers"
+        ],
+        "statutory_provisions_required": [
+          "IPC Section 370",
+          "Constitution Article 142",
+          "Constitution Article 23"
+        ],
+        "hallucination_traps": [
+          "Do not state that the employer was convicted under Section 370.",
+          "Do not omit the Article 142 directions for the National Expert Committee."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_006",
+      "question": "How did the Supreme Court resolve the multi-party real estate subvention dispute in Akshay Gupta vs. ICICI Bank Limited (2025), and what relief was granted to the homebuyers under Article 142?",
+      "ground_truth_answer": "In Akshay Gupta vs. ICICI Bank Limited (2025 INSC 391), the Supreme Court resolved a longstanding tripartite dispute between homebuyers, ICICI Bank, and a defaulting developer (ERA Group) who failed to deliver flats under a subvention scheme. Exercising its plenary powers under Article 142 of the Constitution, the Court recorded and formalized a comprehensive settlement agreement. Under the terms, the homebuyers agreed to pay a mutually settled lump-sum amount, upon which ICICI Bank was directed to issue No Dues Certificates, release title deeds, withdraw all pending recovery proceedings before the Debt Recovery Tribunal (DRT) and under the SARFAESI Act, and update the homebuyers' credit ratings with CIBIL and other credit rating agencies.",
+      "case_metadata": {
+        "case_name": "Akshay Gupta vs. ICICI Bank Limited",
+        "citation": "2025 INSC 391",
+        "judgment_date": "2025-03-25",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Abhay S. Oka, J.",
+          "Augustine George Masih, J."
+        ],
+        "source_pdf": "Akshay_Gupta_vs_Icici_Bank_Limited_on_25_March_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Banking, Consumer Law & Real Estate Settlements",
+        "statutory_provisions": [
+          "SARFAESI Act, 2002",
+          "Recovery of Debts Due to Banks and Financial Institutions Act, 1993",
+          "Real Estate (Regulation and Development) Act, 2016",
+          "Constitution of India - Article 142"
+        ],
+        "keywords": [
+          "Tripartite Subvention Scheme",
+          "Article 142 Settlement",
+          "No Dues Certificate",
+          "CIBIL Rectification",
+          "Withdrawal of DRT Proceedings"
+        ]
+      },
+      "context_extract": "In exercise of our powers under Article 142 of the Constitution of India, and in terms of the tripartite agreement placed on record, the entire dispute between the appellant homebuyers, ICICI Bank, and the builder stands fully resolved. Upon receipt of the agreed settlement amount, ICICI Bank shall forthwith withdraw all proceedings pending before the Debts Recovery Tribunal, issue No Dues Certificates, and notify credit information companies including CIBIL to expunge any adverse remarks against the appellants.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Resolution of tripartite subvention scheme liabilities under Article 142",
+          "Directing lender bank to withdraw DRT/SARFAESI proceedings upon settlement",
+          "Mandating affirmative updating of CIBIL/credit information records"
+        ],
+        "statutory_provisions_required": [
+          "Constitution Article 142",
+          "SARFAESI Act, 2002"
+        ],
+        "hallucination_traps": [
+          "Do not state that the bank was allowed to auction the homebuyers' properties.",
+          "Do not claim that the bank refused the settlement."
+        ],
+        "evaluation_metrics_targeted": [
+          "answer_relevance",
+          "faithfulness",
+          "context_recall"
+        ]
+      }
+    },
+    {
+      "id": "eval_007",
+      "question": "What key directions did the Supreme Court issue in Amit Kumar vs. Union of India (2025) to address student suicides and caste-based discrimination in premier higher educational institutions?",
+      "ground_truth_answer": "In Amit Kumar vs. Union of India (2025 INSC 384), dealing with student suicides, mental health distress, and caste-based discrimination in institutions like IITs, IIMs, and central universities, the Supreme Court issued wide-ranging affirmative directions under Articles 14, 15, and 21 of the Constitution. The Court directed the constitution of a National Task Force headed by a retired Supreme Court judge/distinguished academic to recommend structural reforms; ordered the Union Ministry of Education to provide an initial operating fund of Rs. 20 Lakhs; and mandated the establishment of 24/7 dedicated mental wellness counselling centers, robust Equal Opportunity Cells, and decentralized student grievance redressal committees across all centrally funded educational institutions.",
+      "case_metadata": {
+        "case_name": "Amit Kumar vs. Union Of India",
+        "citation": "2025 INSC 384",
+        "judgment_date": "2025-03-24",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.R. Gavai, J.",
+          "K.V. Viswanathan, J."
+        ],
+        "source_pdf": "Amit_Kumar_vs_Union_Of_India_on_24_March_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Constitutional Law & Higher Education PIL",
+        "statutory_provisions": [
+          "Constitution of India - Article 14",
+          "Constitution of India - Article 15",
+          "Constitution of India - Article 21",
+          "Constitution of India - Article 32",
+          "University Grants Commission (UGC) Act, 1956"
+        ],
+        "keywords": [
+          "Student Suicides Prevention",
+          "National Task Force",
+          "Caste Discrimination in Higher Education",
+          "Mental Health Support",
+          "Equal Opportunity Cells"
+        ]
+      },
+      "context_extract": "To stem the recurring and tragic loss of young lives in premier higher educational institutions, this Court directs the immediate constitution of a National Task Force to study the root causes of student suicides, academic pressure, and discriminatory practices. The Ministry of Education shall make available an initial corpus of Rs. 20 Lakhs for the functioning of the Task Force. Every higher educational institution shall institutionalise accessible mental health support and operationalise anti-discrimination mechanisms without delay.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "State obligation under Articles 14 and 21 to ensure safe, discrimination-free academic environments",
+          "Creation of an independent National Task Force",
+          "Mandating structural mental health support and anti-caste discrimination measures"
+        ],
+        "statutory_provisions_required": [
+          "Constitution Article 14",
+          "Constitution Article 21",
+          "Constitution Article 32"
+        ],
+        "hallucination_traps": [
+          "Do not state that the petition was dismissed.",
+          "Do not claim that criminal prosecution was ordered against university heads."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_008",
+      "question": "In Atul Tiwari vs. Regional Manager, Oriental Insurance Co. Ltd. (2025), how did the Supreme Court calculate compensation for 100% permanent functional disability under the Motor Vehicles Act, and to what amount was it enhanced?",
+      "ground_truth_answer": "In Atul Tiwari vs. Regional Manager, Oriental Insurance Co. Ltd. (2025 INSC 29), the Supreme Court enhanced the motor accident compensation awarded to a young professional who suffered 100% permanent functional disability (quadriplegia) from Rs. 14.5 Lakhs to Rs. 48,09,000 with 7.5% interest per annum. The Court held that 100% functional disability completely extinguishes earning capacity; therefore, compensation must be calculated by applying an addition of 40% for future prospects to the established income, applying the appropriate multiplier (18), and granting adequate heads for future attendant charges (Rs. 9,00,000), future medical expenses, loss of marriage prospects, and loss of amenities and enjoyment of life.",
+      "case_metadata": {
+        "case_name": "Atul Tiwari vs. Regional Manager, Oriental Insurance Co. Ltd.",
+        "citation": "2025 INSC 29",
+        "judgment_date": "2025-01-06",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Vikram Nath, J.",
+          "Prasanna B. Varale, J."
+        ],
+        "source_pdf": "Atul_Tiwari_vs_Regional_Manager_Oriental_Insurance_on_6_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Motor Accident Claims Tribunal (MACT)",
+        "statutory_provisions": [
+          "Motor Vehicles Act, 1988 - Section 166",
+          "Motor Vehicles Act, 1988 - Section 168"
+        ],
+        "keywords": [
+          "100% Functional Disability",
+          "Compensation Enhancement",
+          "Future Prospects (40%)",
+          "Attendant Charges",
+          "MACT Multiplier Method"
+        ]
+      },
+      "context_extract": "When a victim suffers quadriplegia resulting in 100% functional disability, their earning capability is completely lost. The High Court erred in limiting compensation without reckoning future prospects and realistic attendant care. In terms of the law laid down in Pranay Sethi and Raj Kumar, an addition of 40% towards future prospects must be made. Factoring in attendant charges, pain and suffering, and loss of amenities, the total compensation is enhanced to Rs. 48,09,000/- with interest at 7.5% per annum.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Functional disability vs. physical disability distinction",
+          "Application of future prospects (40%) to permanent total disability cases",
+          "Necessity of providing attendant charges and non-pecuniary damages"
+        ],
+        "statutory_provisions_required": [
+          "Motor Vehicles Act, 1988 - Section 166"
+        ],
+        "hallucination_traps": [
+          "Do not misstate the enhanced amount; it was enhanced to Rs. 48,09,000.",
+          "Do not state that the insurance company's appeal was allowed."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_009",
+      "question": "In A. John Kennedy vs. State of Tamil Nadu (2025), what balance did the Supreme Court strike between the Singampatti Reserve Forest tiger habitat and the rehabilitation of resident tea estate workers?",
+      "ground_truth_answer": "In A. John Kennedy vs. State of Tamil Nadu (2025 INSC 443), regarding the Singampatti Reserve Forest located inside the core area of the Kalakkad Mundanthurai Tiger Reserve, the Supreme Court endorsed the recommendations of the Central Empowered Committee (CEC). The Court balanced ecological conservation with socio-economic justice by directing the State of Tamil Nadu to complete boundary surveys and demarcation to protect the inviolate tiger habitat under the Wild Life (Protection) Act, 1972, while strictly directing that resident tea estate workers and their families shall not be summarily evicted without first formulating and implementing a comprehensive statutory rehabilitation and compensation scheme.",
+      "case_metadata": {
+        "case_name": "A. John Kennedy vs. The State Of Tamil Nadu",
+        "citation": "2025 INSC 443",
+        "judgment_date": "2025-03-24",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.R. Gavai, J.",
+          "K.V. Viswanathan, J."
+        ],
+        "source_pdf": "A_John_Kennedy_vs_The_State_Of_Tamil_Nadu_on_24_March_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Environmental Law & Wildlife Habitat Protection",
+        "statutory_provisions": [
+          "Wild Life (Protection) Act, 1972",
+          "Forest (Conservation) Act, 1980",
+          "Constitution of India - Article 21",
+          "Constitution of India - Article 48A"
+        ],
+        "keywords": [
+          "Kalakkad Mundanthurai Tiger Reserve",
+          "Singampatti Reserve Forest",
+          "Central Empowered Committee (CEC)",
+          "Rehabilitation of Estate Laborers",
+          "Wildlife Protection vs. Livelihood"
+        ]
+      },
+      "context_extract": "While ecological imperatives dictate that the integrity of the core tiger habitat in the Kalakkad Mundanthurai Tiger Reserve must be preserved in accordance with the Wild Life (Protection) Act, 1972, human and livelihood rights of workers who have inhabited the tea estates for generations cannot be ignored. The recommendations of the Central Empowered Committee are accepted. No eviction shall take place until a comprehensive rehabilitation and financial settlement package is executed by the State.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Sustainable development and balancing environment with human livelihood",
+          "Role of Central Empowered Committee (CEC) in forest disputes",
+          "Condition precedent of rehabilitation before eviction from tiger reserve"
+        ],
+        "statutory_provisions_required": [
+          "Wild Life (Protection) Act, 1972",
+          "Constitution Article 21"
+        ],
+        "hallucination_traps": [
+          "Do not state that workers were ordered to be summarily evicted without compensation.",
+          "Do not state that the tiger reserve status was revoked."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "legal_reasoning_rigor"
+        ]
+      }
+    },
+    {
+      "id": "eval_010",
+      "question": "What did the Supreme Court hold in A. Rajendra vs. Gonugunta Madhusudhan Rao (2025) regarding the 30-day limitation period under Section 61(2) of the IBC and filing an exemption application for certified copies before NCLAT?",
+      "ground_truth_answer": "In A. Rajendra vs. Gonugunta Madhusudhan Rao (2025 INSC 447), the Supreme Court held that the statutory limitation period of 30 days (extendable by a maximum of 15 days on showing sufficient cause) under Section 61(2) of the Insolvency and Bankruptcy Code, 2016 (IBC) is mandatory and strictly enforced. An appellant cannot claim exclusion of time under Section 12(2) of the Limitation Act as a matter of right if they failed to apply for a certified copy within the limitation period. Filing an interlocutory application seeking exemption from filing a certified copy under the NCLAT Rules does not stop the running of limitation or enlarge the statutory period prescribed under Section 61(2) IBC.",
+      "case_metadata": {
+        "case_name": "A. Rajendra vs. Gonugunta Madhusudhan Rao",
+        "citation": "2025 INSC 447",
+        "judgment_date": "2025-04-04",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Abhay S. Oka, J.",
+          "Augustine George Masih, J."
+        ],
+        "source_pdf": "A_Rajendra_vs_Gonugunta_Madhusudhan_Rao_on_4_April_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Insolvency and Bankruptcy Code (IBC) - Appeals & Limitation",
+        "statutory_provisions": [
+          "Insolvency and Bankruptcy Code, 2016 - Section 61(2)",
+          "Limitation Act, 1963 - Section 12(2)",
+          "NCLAT Rules, 2016 - Rule 22(2)"
+        ],
+        "keywords": [
+          "Section 61(2) IBC Limitation",
+          "NCLAT Appeal Time Bar",
+          "Certified Copy Exclusion",
+          "Exemption Application",
+          "Strict Statutory Timeline"
+        ]
+      },
+      "context_extract": "Section 61(2) of the IBC provides a rigid period of 30 days for preferring an appeal, with a condonable outer limit of only 15 days upon showing sufficient cause. The benefit of Section 12 of the Limitation Act is available only when an application for obtaining a certified copy is actually made within the period of limitation. Filing an application seeking exemption from filing a certified copy cannot be used as a device to bypass or extend the statutory limitation period mandated by the Code.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Strict 30+15 day limitation structure under Section 61(2) IBC",
+          "Exclusion under Section 12 Limitation Act requires timely application for certified copy",
+          "Exemption applications under NCLAT rules cannot extend statutory limitation"
+        ],
+        "statutory_provisions_required": [
+          "IBC Section 61(2)",
+          "Limitation Act Section 12(2)"
+        ],
+        "hallucination_traps": [
+          "Do not state that NCLAT has general power under Section 5 Limitation Act to condone indefinite delays.",
+          "Do not state that the exemption application automatically extends the appeal deadline."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "statutory_citation_accuracy",
+          "answer_relevance"
+        ]
+      }
+    },
+    {
+      "id": "eval_011",
+      "question": "In Balbir Singh vs. Baldev Singh (2025), does the judgment debtor's failure to apply for rescission under Section 28 of the Specific Relief Act entitle the decree-holder to deposit the balance consideration after an inordinate delay?",
+      "ground_truth_answer": "In Balbir Singh vs. Baldev Singh (D) Through His LRs (2025 INSC 81), the Supreme Court answered in the negative. The Court held that in a decree for specific performance of an agreement to sell, the mere omission of the judgment debtor to file an application for rescission of contract under Section 28 of the Specific Relief Act, 1963, does not automatically grant the decree-holder an open-ended or indefinite license to deposit the balance sale consideration. The executing court possesses discretion to extend time only upon the decree-holder establishing justifiable, bona fide, and reasonable grounds for delay; unexplained and inordinate delay disentitles the decree-holder from executing the decree.",
+      "case_metadata": {
+        "case_name": "Balbir Singh vs. Baldev Singh (D) Through His LRs",
+        "citation": "2025 INSC 81",
+        "judgment_date": "2025-01-17",
+        "court": "Supreme Court of India",
+        "bench": [
+          "J.B. Pardiwala, J.",
+          "R. Mahadevan, J."
+        ],
+        "source_pdf": "Balbir_Singh_vs_Baldev_Singh_D_Through_His_Lrs_on_17_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Specific Relief Act & Decree Execution",
+        "statutory_provisions": [
+          "Specific Relief Act, 1963 - Section 28",
+          "Code of Civil Procedure, 1908 - Order XXI"
+        ],
+        "keywords": [
+          "Specific Performance Decree",
+          "Section 28 Rescission of Contract",
+          "Deposit of Balance Consideration",
+          "Discretion to Extend Time",
+          "Unexplained Delay in Execution"
+        ]
+      },
+      "context_extract": "Section 28 of the Specific Relief Act, 1963 embodies the equitable principle that the court which passed the decree retains seisin over the contract. The mere fact that the judgment debtor did not take steps to file an application for rescission under Section 28 does not confer an unfettered right upon the decree-holder to deposit the balance sale price at their sweet will after unexplained years of delay. Discretion to extend time must be exercised judicially and not mechanically.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Nature of Section 28 Specific Relief Act retaining court's seisin over contract",
+          "Judgment debtor's inaction does not grant decree-holder indefinite time to deposit",
+          "Judicial discretion to extend time requires demonstration of sufficient cause"
+        ],
+        "statutory_provisions_required": [
+          "Specific Relief Act, 1963 - Section 28"
+        ],
+        "hallucination_traps": [
+          "Do not hold that the decree-holder has an absolute right to deposit money anytime before rescission is formally filed.",
+          "Do not confuse execution under Order XXI with Section 28 proceedings."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "legal_reasoning_rigor"
+        ]
+      }
+    },
+    {
+      "id": "eval_012",
+      "question": "What is the legal significance of the complete absence of motive in a circumstantial evidence case, as explained by the Supreme Court in Bani @ Alam Mazid Dhan vs. State of Assam (2025)?",
+      "ground_truth_answer": "In Bani @ Alam Mazid Dhan vs. State of Assam (2025 INSC 260), the Supreme Court acquitted the appellant of charges under Sections 366A, 302, and 201 IPC, highlighting that while motive is not indispensable in direct evidence cases, it assumes paramount and decisive significance in cases resting purely on circumstantial evidence. The Court held that in a circumstantial evidence trial, the complete absence of motive creates a fatal breach in the chain of circumstances. Since the prosecution failed to prove any motive, and the alleged extra-judicial confession and recoveries were unreliable, the chain of circumstances was broken, entitling the appellant to acquittal.",
+      "case_metadata": {
+        "case_name": "Bani @ Alam Mazid Dhan vs. The State Of Assam",
+        "citation": "2025 INSC 260",
+        "judgment_date": "2025-02-24",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.R. Gavai, J.",
+          "K.V. Viswanathan, J."
+        ],
+        "source_pdf": "Bani_Alam_Mazid_Dhan_vs_The_State_Of_Assam_on_24_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Criminal Law - Circumstantial Evidence & Motive",
+        "statutory_provisions": [
+          "Indian Penal Code, 1860 - Section 302",
+          "Indian Penal Code, 1860 - Section 366A",
+          "Indian Penal Code, 1860 - Section 201",
+          "Indian Evidence Act, 1872 - Section 8"
+        ],
+        "keywords": [
+          "Absence of Motive",
+          "Circumstantial Evidence Chain",
+          "Section 8 Evidence Act",
+          "Acquittal under Section 302",
+          "Extra-Judicial Confession"
+        ]
+      },
+      "context_extract": "It is well-settled that in a case based on circumstantial evidence, motive plays an important role and is a crucial link in the chain of circumstances. While absence of motive may not be fatal in cases of direct eyewitness testimony, in a case based entirely on circumstantial evidence, the failure of the prosecution to establish any motive casts serious doubt on the prosecution case. When coupled with unsubstantiated recoveries and uncorroborated extra-judicial confession, the conviction cannot stand.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Role of motive: crucial link in circumstantial evidence cases unlike direct evidence",
+          "Section 8 Evidence Act and relevance of motive to conduct",
+          "Break in circumstantial chain necessitates acquittal"
+        ],
+        "statutory_provisions_required": [
+          "IPC Section 302",
+          "Indian Evidence Act Section 8"
+        ],
+        "hallucination_traps": [
+          "Do not claim that absence of motive is never relevant in criminal law.",
+          "Do not state that the conviction under Section 302 was upheld."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "citation_fidelity"
+        ]
+      }
+    },
+    {
+      "id": "eval_013",
+      "question": "Can a High Court entertain a writ petition under Article 226 to stay personal insolvency proceedings initiated under Section 95 of the IBC, according to Bank of Baroda vs. Farooq Ali Khan (2025)?",
+      "ground_truth_answer": "In Bank of Baroda vs. Farooq Ali Khan (2025 INSC 253), the Supreme Court held that High Courts should not entertain writ petitions under Article 226 of the Constitution to interfere with, stay, or derail personal guarantor insolvency proceedings initiated under Section 95 of the Insolvency and Bankruptcy Code, 2016 (IBC). The Court ruled that the IBC is a comprehensive, self-contained statutory code providing a dedicated adjudicatory mechanism before the NCLT and NCLAT. The interim moratorium under Section 96 comes into effect automatically by operation of law upon filing the application, and any challenges or grievances must be raised before the adjudicating authority under the IBC rather than through writ proceedings.",
+      "case_metadata": {
+        "case_name": "Bank Of Baroda vs. Farooq Ali Khan",
+        "citation": "2025 INSC 253",
+        "judgment_date": "2025-02-20",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Sanjiv Khanna, J.",
+          "Sanjay Kumar, J."
+        ],
+        "source_pdf": "Bank_Of_Baroda_vs_Farooq_Ali_Khan_on_20_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Insolvency and Bankruptcy Code (IBC) - Personal Guarantors & Article 226",
+        "statutory_provisions": [
+          "Insolvency and Bankruptcy Code, 2016 - Section 95",
+          "Insolvency and Bankruptcy Code, 2016 - Section 96",
+          "Constitution of India - Article 226"
+        ],
+        "keywords": [
+          "Personal Guarantors Insolvency",
+          "Section 95 IBC",
+          "Section 96 Interim Moratorium",
+          "Article 226 Writ Jurisdiction Bar",
+          "Self-Contained Code"
+        ]
+      },
+      "context_extract": "The Insolvency and Bankruptcy Code, 2016 is a self-contained code. The statutory framework provided under Chapter III of Part III specifically deals with the insolvency resolution process against personal guarantors. Once an application is filed under Section 95, the statutory scheme must take its course before the National Company Law Tribunal. High Courts ought not to exercise their discretionary writ jurisdiction under Article 226 to stall or interfere with the statutory insolvency process.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "IBC as an exhaustive, self-contained code",
+          "High Courts should refrain from using Article 226 to interdict Section 95 IBC proceedings",
+          "Operation of statutory interim moratorium under Section 96"
+        ],
+        "statutory_provisions_required": [
+          "IBC Section 95",
+          "IBC Section 96",
+          "Constitution Article 226"
+        ],
+        "hallucination_traps": [
+          "Do not state that High Courts have unrestricted power to stay IBC insolvency.",
+          "Do not confuse corporate debtor insolvency (Section 7/9) with personal guarantor insolvency (Section 95)."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "statutory_citation_accuracy",
+          "answer_relevance"
+        ]
+      }
+    },
+    {
+      "id": "eval_014",
+      "question": "In Bernard Francis Joseph Vaz vs. Government of Karnataka (2025), what constitutional principle did the Supreme Court apply regarding decadal delays by land acquisition authorities under Article 300A, and how was compensation determined?",
+      "ground_truth_answer": "In Bernard Francis Joseph Vaz vs. Government of Karnataka (2025 INSC 3), the Supreme Court held that an unexplained, inordinate delay of over ten years by the Special Land Acquisition Officer (SLAO) in passing a land acquisition award violates the constitutional right to property guaranteed under Article 300A of the Constitution. The Court ruled that compelling a landowner to accept compensation based on archaic market values determined decades earlier violates fairness and justice. Consequently, the Court directed that market value and compensation be fixed as on the date of passing the award (April 22, 2019) rather than the preliminary notification date (1987), along with full statutory benefits of 30% solatium and interest.",
+      "case_metadata": {
+        "case_name": "Bernard Francis Joseph Vaz vs. Government Of Karnataka",
+        "citation": "2025 INSC 3",
+        "judgment_date": "2025-01-02",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Surya Kant, J.",
+          "Ujjal Bhuyan, J."
+        ],
+        "source_pdf": "Bernard_Francis_Joseph_Vaz_vs_Government_Of_Karnataka_on_2_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Land Acquisition & Article 300A Property Rights",
+        "statutory_provisions": [
+          "Land Acquisition Act, 1894 - Section 4",
+          "Land Acquisition Act, 1894 - Section 11",
+          "Constitution of India - Article 300A",
+          "Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act, 2013"
+        ],
+        "keywords": [
+          "Article 300A Constitutional Right to Property",
+          "Delay in Land Acquisition Award",
+          "Market Value at Date of Award",
+          "Solatium and Statutory Interest",
+          "Eminent Domain Abuses"
+        ]
+      },
+      "context_extract": "The right to property, though no longer a fundamental right, remains a valuable constitutional right under Article 300A. A citizen cannot be deprived of their property except by authority of law which is just, fair and reasonable. When the state takes possession and inordinately delays passing the award for decades, calculating compensation based on the preliminary notification date of 1987 would be expropriatory. The market value must be determined as on the date of the award, i.e., 22 April 2019, with solatium and interest.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Article 300A mandates just, fair, and reasonable procedure in land acquisition",
+          "Decadal administrative delay cannot penalize the expropriated landowner",
+          "Fixation of market value as on the date of award when delay is attributable to the State"
+        ],
+        "statutory_provisions_required": [
+          "Constitution Article 300A",
+          "Land Acquisition Act Section 11"
+        ],
+        "hallucination_traps": [
+          "Do not state that Article 31 fundamental right was invoked; Article 300A is a constitutional/human right.",
+          "Do not state that the acquisition was annulled; compensation was enhanced based on 2019 market value."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_015",
+      "question": "What did the Supreme Court rule in Bharat Aambale vs. State of Chhattisgarh (2025) regarding mandatory compliance with Section 52A of the NDPS Act and its impact on prosecution evidence?",
+      "ground_truth_answer": "In Bharat Aambale vs. State of Chhattisgarh (2025 INSC 78), the Supreme Court held that compliance with Section 52A of the Narcotic Drugs and Psychotropic Substances Act, 1985 (NDPS Act) is mandatory and strictly enforceable. The investigating officer must prepare an inventory of the seized contraband and draw samples strictly in the presence of a Judicial Magistrate, who must certify the correctness of the inventory and samples. The Court held that drawing samples at the spot of seizure without an inventory certified by a Magistrate renders the sample collection illegal; consequently, any Forensic Science Laboratory (FSL) report obtained on such uncertified samples has no evidentiary value as primary evidence, vitiating the trial and entitling the accused to acquittal.",
+      "case_metadata": {
+        "case_name": "Bharat Aambale vs. The State Of Chhattisgarh",
+        "citation": "2025 INSC 78",
+        "judgment_date": "2025-01-06",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Abhay S. Oka, J.",
+          "Augustine George Masih, J."
+        ],
+        "source_pdf": "Bharat_Aambale_vs_The_State_Of_Chhattisgarh_on_6_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Narcotic Drugs and Psychotropic Substances Act (NDPS)",
+        "statutory_provisions": [
+          "Narcotic Drugs and Psychotropic Substances Act, 1985 - Section 20(b)(ii)(C)",
+          "Narcotic Drugs and Psychotropic Substances Act, 1985 - Section 52A",
+          "Code of Criminal Procedure, 1973 - Section 100"
+        ],
+        "keywords": [
+          "Section 52A NDPS Act Mandatory",
+          "Sampling in Presence of Magistrate",
+          "FSL Report Evidentiary Value",
+          "Primary Evidence Defect",
+          "Acquittal in Commercial Quantity"
+        ]
+      },
+      "context_extract": "Section 52A of the NDPS Act is a mandatory procedural safeguard. The seizure officers cannot draw samples at the spot of recovery and send them directly for chemical examination. The samples must be drawn in the presence of a Magistrate after making an inventory certified by the Magistrate. When samples are drawn in violation of Section 52A, the FSL report cannot be treated as primary evidence in the eyes of law, and the conviction cannot be sustained.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Mandatory nature of Section 52A NDPS Act",
+          "Requirement of drawing samples in presence of Magistrate, not at seizure spot",
+          "Invalidity of FSL report when samples are drawn in violation of Section 52A"
+        ],
+        "statutory_provisions_required": [
+          "NDPS Act Section 52A",
+          "NDPS Act Section 20"
+        ],
+        "hallucination_traps": [
+          "Do not state that spot sampling by police is sufficient compliance.",
+          "Do not state that the conviction was confirmed."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "statutory_citation_accuracy",
+          "answer_relevance"
+        ]
+      }
+    },
+    {
+      "id": "eval_016",
+      "question": "In Bharat Petroleum Corporation Ltd. vs. Commissioner of Central Excise, Nashik (2025), under what conditions can the Revenue invoke the extended 5-year limitation period under Section 11A of the Central Excise Act?",
+      "ground_truth_answer": "In Bharat Petroleum Corporation Ltd. vs. Commissioner of Central Excise, Nashik (2025 INSC 84), the Supreme Court held that the Revenue cannot invoke the extended period of limitation of 5 years under the proviso to Section 11A(1) of the Central Excise Act, 1944 unless there is clear and positive evidence establishing fraud, collusion, willful misstatement, or deliberate suppression of facts with an intent to evade payment of duty. The Court ruled that mere non-disclosure or an omission to submit an internal memorandum of understanding (MOU) between public sector oil marketing companies (OMCs) does not constitute 'suppression of facts' in the absence of deliberate concealment or mens rea to evade tax.",
+      "case_metadata": {
+        "case_name": "Bharat Petroleum Corporation Ltd. vs. Commissioner Of Central Excise, Nashik",
+        "citation": "2025 INSC 84",
+        "judgment_date": "2025-01-20",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.V. Nagarathna, J.",
+          "N. Kotiswar Singh, J."
+        ],
+        "source_pdf": "Bharat_Petroleum_Corporation_Ltd_vs_Commissioner_Of_Central_Excise_Nashik_on_20_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Taxation & Central Excise Limitation",
+        "statutory_provisions": [
+          "Central Excise Act, 1944 - Section 11A",
+          "Central Excise Act, 1944 - Section 4"
+        ],
+        "keywords": [
+          "Section 11A Extended Limitation",
+          "Willful Suppression of Facts",
+          "Intent to Evade Duty",
+          "Oil Marketing Companies (OMCs)",
+          "Excise Demand Quashed"
+        ]
+      },
+      "context_extract": "The proviso to Section 11A(1) of the Central Excise Act, 1944 permitting invocation of the extended period of limitation of five years requires something positive other than mere omission or inaction. There must be an act of deliberate suppression, misstatement or fraud accompanied by an intent to evade payment of excise duty. In the case of public sector undertakings operating under government directives and sharing storage facilities under an MOU, an allegation of clandestine suppression cannot be made mechanically.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Proviso to Section 11A requires positive act of suppression with intent to evade duty",
+          "Mere non-disclosure or failure to file an MOU is not willful suppression",
+          "Quashing of excise demand barred by normal limitation"
+        ],
+        "statutory_provisions_required": [
+          "Central Excise Act Section 11A"
+        ],
+        "hallucination_traps": [
+          "Do not state that BPCL was found guilty of tax evasion.",
+          "Do not hold that limitation is automatically 5 years for all excise audits."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_017",
+      "question": "What mandatory duties did the Supreme Court impose on executing courts adjudicating written objections under Order XXI CPC in Bhudev Mallick vs. Ranajit Ghoshal (2025)?",
+      "ground_truth_answer": "In Bhudev Mallick @ Bhudeb Mallick vs. Ranajit Ghoshal (2025 INSC 175), the Supreme Court set aside orders issuing execution delivery warrants without examining third-party objections under Order XXI Rules 97 to 101 of the Code of Civil Procedure (CPC). The Court held that when an obstructionist or third party files written objections asserting an independent right, title, or interest in the decretal property, Order XXI Rule 101 CPC mandates that all questions arising between the parties must be judicially determined by the executing court as a decree, and not relegated to a separate suit. Executing courts cannot bypass objections or mechanically order police assistance without a speaking judicial order determining the objections on merits.",
+      "case_metadata": {
+        "case_name": "Bhudev Mallick @ Bhudeb Mallick vs. Ranajit Ghoshal",
+        "citation": "2025 INSC 175",
+        "judgment_date": "2025-01-17",
+        "court": "Supreme Court of India",
+        "bench": [
+          "J.B. Pardiwala, J.",
+          "R. Mahadevan, J."
+        ],
+        "source_pdf": "Bhudev_Mallick_Alias_Bhudeb_Mallick_vs_Ranajit_Ghoshal_on_17_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Civil Procedure Code (CPC) - Order XXI Execution",
+        "statutory_provisions": [
+          "Code of Civil Procedure, 1908 - Order XXI Rule 97",
+          "Code of Civil Procedure, 1908 - Order XXI Rule 99",
+          "Code of Civil Procedure, 1908 - Order XXI Rule 101",
+          "Code of Civil Procedure, 1908 - Order XXI Rule 103"
+        ],
+        "keywords": [
+          "Order XXI Rule 101 Adjudication",
+          "Execution Petition Objections",
+          "Third Party Resistance",
+          "Bar on Separate Suit",
+          "Delivery of Possession Warrant"
+        ]
+      },
+      "context_extract": "Order XXI Rule 101 CPC contains a statutory mandate that all questions including questions relating to right, title or interest in the property arising between the parties to a proceeding on an application under Rule 97 or Rule 99 shall be determined by the Court executing the decree and not by a separate suit. The executing court committed a grave error in ignoring the written objections filed by the petitioner and mechanically ordering police assistance for execution.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Order XXI Rule 101 mandates that the executing court must determine all questions of title/interest",
+          "Explicit bar against relegating parties to a separate regular suit",
+          "Executing courts cannot grant police aid or delivery warrants without deciding written objections"
+        ],
+        "statutory_provisions_required": [
+          "CPC Order XXI Rule 97",
+          "CPC Order XXI Rule 101",
+          "CPC Order XXI Rule 103"
+        ],
+        "hallucination_traps": [
+          "Do not state that the third party should have filed a separate civil suit.",
+          "Do not claim that executing courts have no power to adjudicate third-party claims."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "statutory_citation_accuracy"
+        ]
+      }
+    },
+    {
+      "id": "eval_018",
+      "question": "Why did the Supreme Court quash the chargesheet and impose exemplary costs of Rs. 50,000 in Bhupinderpal Singh Gill vs. State of Punjab (2025)?",
+      "ground_truth_answer": "In Bhupinderpal Singh Gill vs. State of Punjab (2025 INSC 83), the Supreme Court quashed a departmental chargesheet issued against a senior government officer just 11 days prior to his superannuation. The charges pertained to alleged administrative omissions during election duties for which the Election Commission of India had already enquired into and exonerated the officer. The Court held that resurrecting stale, cleared charges on the eve of retirement demonstrated clear 'malice in law' and an abuse of administrative discretion aimed at withholding retiral benefits. The Court directed the immediate release of all pensionary dues and imposed exemplary costs of Rs. 50,000 on the State of Punjab.",
+      "case_metadata": {
+        "case_name": "Bhupinderpal Singh Gill vs. The State Of Punjab",
+        "citation": "2025 INSC 83",
+        "judgment_date": "2025-01-20",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Vikram Nath, J.",
+          "Prasanna B. Varale, J."
+        ],
+        "source_pdf": "Bhupinderpal_Singh_Gill_vs_The_State_Of_Punjab_on_20_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Service Law - Malice in Law & Disciplinary Abuse",
+        "statutory_provisions": [
+          "Constitution of India - Article 226",
+          "Constitution of India - Article 311",
+          "Punjab Civil Services Rules"
+        ],
+        "keywords": [
+          "Malice in Law",
+          "Chargesheet on Eve of Retirement",
+          "Exoneration by Election Commission",
+          "Release of Retiral Benefits",
+          "Exemplary Costs Rs. 50,000"
+        ]
+      },
+      "context_extract": "Issuing a departmental chargesheet barely 11 days prior to the appellant's retirement in respect of allegations from which he had already been cleared by the Election Commission of India constitutes a classic case of malice in law. Disciplinary power cannot be exercised as an instrument of harassment to deny an employee their hard-earned retiral benefits. The chargesheet is quashed, full retiral benefits with interest are directed to be released, and exemplary costs of Rs. 50,000/- are imposed on the State.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Concept of 'malice in law' in service disciplinary proceedings",
+          "Unjustified initiation of departmental proceedings on the eve of retirement",
+          "Imposition of exemplary costs against the state for administrative harassment"
+        ],
+        "statutory_provisions_required": [
+          "Constitution Article 226",
+          "Constitution Article 311"
+        ],
+        "hallucination_traps": [
+          "Do not state that the chargesheet was upheld.",
+          "Do not omit the finding of malice in law and the exemplary costs of Rs. 50,000."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "legal_reasoning_rigor"
+        ]
+      }
+    },
+    {
+      "id": "eval_019",
+      "question": "In B.N. John vs. State of Uttar Pradesh (2025), how did the Supreme Court interpret the bar under Section 195(1)(a) CrPC when an FIR includes both Section 186 IPC and Section 353 IPC?",
+      "ground_truth_answer": "In B.N. John vs. State of Uttar Pradesh (2025 INSC 4), the Supreme Court held that Section 195(1)(a) of the Code of Criminal Procedure (CrPC) creates an absolute statutory bar against any court taking cognizance of an offence punishable under Section 186 IPC (obstructing public servant) on the basis of a police report/chargesheet, except upon a written complaint made by the public servant concerned. The Court ruled that when an offence under Section 186 IPC and an offence under Section 353 IPC (assault to deter public servant) arise out of the same transaction and are inextricably intertwined, the prosecution cannot bypass or circumvent the mandatory statutory bar of Section 195(1)(a) CrPC by simply adding Section 353 IPC in a police report. The Court quashed the cognizance and criminal proceedings under Section 482 CrPC.",
+      "case_metadata": {
+        "case_name": "B.N. John vs. The State Of Uttar Pradesh",
+        "citation": "2025 INSC 4",
+        "judgment_date": "2025-01-02",
+        "court": "Supreme Court of India",
+        "bench": [
+          "B.R. Gavai, J.",
+          "K.V. Viswanathan, J."
+        ],
+        "source_pdf": "B_N_John_vs_The_State_Of_Uttar_Pradesh_on_2_January_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Criminal Procedure Code (CrPC) - Section 195(1)(a) Cognizance Bar",
+        "statutory_provisions": [
+          "Code of Criminal Procedure, 1973 - Section 195(1)(a)",
+          "Code of Criminal Procedure, 1973 - Section 482",
+          "Indian Penal Code, 1860 - Section 186",
+          "Indian Penal Code, 1860 - Section 353"
+        ],
+        "keywords": [
+          "Section 195(1)(a) CrPC Mandatory Bar",
+          "Cognizance on Police Report Barred",
+          "Public Servant Written Complaint",
+          "Section 186 vs Section 353 IPC",
+          "Section 482 CrPC Quashing"
+        ]
+      },
+      "context_extract": "Section 195(1)(a) Cr.P.C. provides that no court shall take cognizance of any offence punishable under Section 186 IPC except on the complaint in writing of the public servant concerned. Where the primary allegation is obstruction of a public servant under Section 186, the investigating agency cannot circumvent the statutory mandate of Section 195(1)(a) by clubbing Section 353 IPC and filing a chargesheet. Since the allegations under Sections 186 and 353 IPC are inextricably intertwined, taking of cognizance on a police report is void ab initio.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Absolute statutory bar under Section 195(1)(a) CrPC for Section 186 IPC",
+          "Prohibition against bypassing Section 195(1)(a) by adding Section 353 IPC for the same transaction",
+          "Quashing under Section 482 CrPC where cognizance is taken without statutory written complaint"
+        ],
+        "statutory_provisions_required": [
+          "CrPC Section 195(1)(a)",
+          "IPC Section 186",
+          "IPC Section 353",
+          "CrPC Section 482"
+        ],
+        "hallucination_traps": [
+          "Do not state that the police chargesheet was valid for Section 353.",
+          "Do not confuse private complaint with written complaint of the public servant."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "statutory_citation_accuracy",
+          "answer_relevance"
+        ]
+      }
+    },
+    {
+      "id": "eval_020",
+      "question": "In Canara Bank vs. Ajithkumar G.K. (2025), what did the Supreme Court decide regarding the nature of compassionate appointment rights, and what relief was provided under Article 142?",
+      "ground_truth_answer": "In Canara Bank vs. Ajithkumar G.K. (2025 INSC 184), the Supreme Court reiterated that appointment on compassionate grounds is not a vested hereditary property right or an alternative mode of employment, but a compassionate exception to the equality mandates of Articles 14 and 16 of the Constitution, intended solely to relieve a deceased employee's family from immediate financial destitution. An application must be evaluated in accordance with the scheme prevailing on the date of consideration; where the bank had replaced its compassionate employment scheme with an ex-gratia financial relief scheme, the claimant cannot insist on appointment. However, recognizing that the dependent had been litigating for over 20 years, the Court invoked Article 142 to direct Canara Bank to pay a lump-sum ex-gratia amount of Rs. 2,50,000 to conclude the dispute.",
+      "case_metadata": {
+        "case_name": "Canara Bank vs. Ajithkumar G.K.",
+        "citation": "2025 INSC 184",
+        "judgment_date": "2025-02-11",
+        "court": "Supreme Court of India",
+        "bench": [
+          "Hrishikesh Roy, J.",
+          "S.V.N. Bhatti, J."
+        ],
+        "source_pdf": "Canara_Bank_vs_Ajithkumar_G_K_on_11_February_2025_1.PDF"
+      },
+      "legal_taxonomy": {
+        "domain": "Service Law - Compassionate Appointment & Article 142 Relief",
+        "statutory_provisions": [
+          "Constitution of India - Article 14",
+          "Constitution of India - Article 16",
+          "Constitution of India - Article 142",
+          "Banking Regulation Act, 1949"
+        ],
+        "keywords": [
+          "Compassionate Appointment No Vested Right",
+          "Exception to Articles 14 and 16",
+          "Ex-Gratia Financial Scheme",
+          "Article 142 Lump Sum Compensation",
+          "20-Year Prolonged Litigation"
+        ]
+      },
+      "context_extract": "Compassionate appointment is an exception to the general rule of open recruitment mandated under Articles 14 and 16 of the Constitution. It is not an inheritable right. A candidate has no vested right to claim compassionate appointment contrary to the scheme in force at the time of consideration of the application. However, considering that the respondent has been litigating for two decades in anticipation of relief, this Court in exercise of powers under Article 142 directs Canara Bank to pay a lump sum ex-gratia amount of Rs. 2,50,000/- as complete closure.",
+      "eval_criteria": {
+        "core_legal_principles": [
+          "Compassionate appointment is not a vested right but an exception to Articles 14 and 16",
+          "Application governed by policy in force at time of consideration",
+          "Balancing 20-year litigation with ex-gratia financial grant under Article 142"
+        ],
+        "statutory_provisions_required": [
+          "Constitution Article 14",
+          "Constitution Article 16",
+          "Constitution Article 142"
+        ],
+        "hallucination_traps": [
+          "Do not state that Canara Bank was ordered to provide permanent employment.",
+          "Do not state that compassionate appointment is an unconditional constitutional right."
+        ],
+        "evaluation_metrics_targeted": [
+          "faithfulness",
+          "answer_relevance",
+          "legal_reasoning_rigor"
+        ]
+      }
+    }
+  ]
+}
