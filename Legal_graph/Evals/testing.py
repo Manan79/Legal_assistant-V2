@@ -38,7 +38,7 @@ experiments = client.evaluate(
         relevancy,
         faithfulness,
     ],
-    experiment_prefix="Qdrant_rag_V2",
+    experiment_prefix="Qdrant_rag_V2_AZURE-OPENAI",
     metadata={
         "version": "Legal_AI_Assitant_V2",
         "evaluation_rubric": "Calibrated_V3",

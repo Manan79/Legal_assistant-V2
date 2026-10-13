@@ -9,7 +9,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from langchain.agents import create_agent
-from Legal_graph.Agent.models import openrouter_model
+from Legal_graph.Agent.models import openrouter_model, openai_model
 from Legal_graph.Prompts.System_prompt import (
     LEGAL_SYSTEM_PROMPT_V1,
     LEGAL_SYSTEM_PROMPT_V2,
@@ -61,12 +61,14 @@ async def main_react_agent(query: str):
     system_prompt = PROMPT_VERSIONS['v1']
 
     # Build the ReAct agent
-    tools = [get_retrieved_results]
+    tools = [get_retrieved_results, websearch]
     agent = create_agent(
         # model_name='deepseek/deepseek-v4.1-flash' , tencent/hy-mt2-30b-a3b
-        model=openrouter_model(model_name='qwen/qwen3.8-27b'),
+        model= openai_model(),
         tools=tools,
         system_prompt=system_prompt,
+        # config={"max_iterations": 2}
+        
     )
 
     # Step 1: Guardrails check
@@ -98,3 +100,25 @@ async def main_react_agent(query: str):
         "answer": final_answer,
         "context": retrieved_context_str
     }
+
+
+
+
+# async def main_react_agent(query: str):
+#     # 1. Execute retrieval programmatically upfront (0 agent turns!)
+#     retrieved_results = get_retrieved_results(query=query, k=3)
+#     retrieved_context_str = "\n\n".join([str(doc.page_content) for doc, score in retrieved_results])
+
+   
+#     prompt = f"Query: {query}\n\nRetrieved Legal Context:\n{retrieved_context_str}"
+
+#     model = openai_model()
+#     response = model.invoke([
+#         {"role": "system", "content": LEGAL_SYSTEM_PROMPT_V2},
+#         {"role": "user", "content": prompt}
+#     ])
+
+#     return {
+#         "answer": response.content,
+#         "context": retrieved_context_str
+#     }

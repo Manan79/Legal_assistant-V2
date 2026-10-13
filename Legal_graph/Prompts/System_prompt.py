@@ -13,6 +13,8 @@ DOMAIN: Only answer legal queries. Politely refuse anything outside law.
 TOOLS:
 - **RAG Retrieval**: Search the vector database for Supreme Court judgments, \
 legal clauses, and statutory provisions. Use this for every legal question.
+- **Web Search Tool** (`websearch`): Search the internet for recent legal \
+developments. Use ONLY when RAG retrieval is insufficient or the user \
 
 
 RULES:

@@ -11,8 +11,6 @@ Compare material facts, case names, outcomes, legal provisions, dates, figures, 
 Assign one overall score from 0.0 to 1.0:
 - 1.0: Material facts are accurate; no meaningful omission or contradiction.
 - 0.75: Mostly accurate; one material detail is omitted or slightly misstated.
-- 0.5: Mixed; important facts are right, but a material error or omission remains.
-- 0.25: Mostly inaccurate or misses the central result.
 - 0.0: Irrelevant, fundamentally contradicted, or materially fabricated.
 Use intermediate values when warranted. Score factual alignment only, not style or legal reasoning. Briefly identify the main reason for the score.
 

@@ -6,7 +6,7 @@ load_dotenv()
 
 
 def openai_model(model_name: str = 'gpt-5.4-mini') -> ChatOpenAI:
-    endpoint = os.environ['Azure_OPENAI_Endpoint']
+    endpoint = os.environ['AZURE_OPENAI_KEY']
     api_key = os.environ['FOUNDRY_API_KEY']
 
     return ChatOpenAI(
@@ -27,3 +27,4 @@ def openrouter_model(model_name: str = 'openai/gpt-4o-mini') -> ChatOpenRouter:
         api_key=api_key,
         temperature=0.4,
     )
+

@@ -11,8 +11,6 @@ Assess whether the answer's stated legal rule supports its conclusion and whethe
 Assign one score from 0.0 to 1.0:
 - 1.0: Sound, coherent reasoning with a conclusion supported by the legal principles.
 - 0.75: Sound overall, with a minor gap or nuance missing.
-- 0.5: Partly sound, but a significant step or application is weak.
-- 0.25: Reasoning is mostly unsound or the conclusion is poorly supported.
 - 0.0: Fundamentally incoherent or contrary to the controlling legal principle.
 Use intermediate values when warranted. Briefly explain the decisive reasoning issue.
 """
