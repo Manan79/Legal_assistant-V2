@@ -17,3 +17,6 @@ langchain-qdrant
 pymupdf4llm
 nemoguardrails
 python-dotenv
+
+fastapi
+uvicorn
