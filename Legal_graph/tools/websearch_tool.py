@@ -12,7 +12,8 @@ def websearch(query):
         max_results=5,
         topic='general',
     )
-    return tool.invoke({'query': query})
+    response = tool.invoke({'query': query})
+    return response[:700]
     
     # return {'retriever_docs' : tool.invoke({'query': query}) , 'tools_used': ['websearch']}
 

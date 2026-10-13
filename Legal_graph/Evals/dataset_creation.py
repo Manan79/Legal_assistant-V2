@@ -5,7 +5,7 @@ from langsmith import Client
 import os
 
 # loading the eval dataset
-with open('Legal_graph\\Evals\\eval_dataset.json', 'r') as f:
+with open('Legal_graph\\Evals\\datasets\\eval_dataset.json', 'r') as f:
     datasets = json.load(f)
 
 # print(dataset)

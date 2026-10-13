@@ -19,7 +19,7 @@ def openai_model(model_name: str = 'gpt-5.4-mini') -> ChatOpenAI:
 
 
 def openrouter_model(model_name: str = 'openai/gpt-4o-mini') -> ChatOpenRouter:
-
+    
     api_key = os.environ['OPENROUTER_API_KEY']
 
     return ChatOpenRouter(

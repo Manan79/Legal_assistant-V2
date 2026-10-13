@@ -6,6 +6,7 @@ langchain-community
 
 # Libararies for LLM integration
 langchain-openrouter
+langchain-google-genai
 langchain-openai
 langchain-groq
 langchain-text-splitters

@@ -56,36 +56,45 @@ async def check_guardrails(user_message: str):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-async def main():
-    system_prompt = PROMPT_VERSIONS['v2']
+async def main_react_agent(query: str):
+    print("Using System prompt Version 2")
+    system_prompt = PROMPT_VERSIONS['v1']
 
     # Build the ReAct agent
-    tools = [get_retrieved_results, websearch]
+    tools = [get_retrieved_results]
     agent = create_agent(
-        model=openrouter_model(),
+        # model_name='deepseek/deepseek-v4.1-flash' , tencent/hy-mt2-30b-a3b
+        model=openrouter_model(model_name='qwen/qwen3.8-27b'),
         tools=tools,
         system_prompt=system_prompt,
     )
 
-    # Get user query
-    query = input("Enter your legal query: ").strip()
-    if not query:
-        raise SystemExit("Please enter a legal query.")
-
     # Step 1: Guardrails check
-    should_continue, guard_response = await check_guardrails(query)
-    if not should_continue:
-        print(guard_response)
-        return
+    # should_continue, guard_response = await check_guardrails(query)
+    # if not should_continue:
+    #     # Return the error message instead of nothing
+    #     return guard_response
 
     # Step 2: Invoke the ReAct agent (query passed guardrails)
     response = agent.invoke(
         {"messages": [{"role": "user", "content": query}]}
     )
-    print("-"*10,"Agent Response", "-"*10)
-    print(" ")
-    print(response["messages"][-1].content)
+     # 1. Extract the final answer
+    final_answer = response["messages"][-1].content
+
+    # 2. Extract retrieved docs from ToolMessage
+    retrieved_contexts = []
+    for msg in response["messages"]:
+        if getattr(msg, "name", None) == "get_retrieved_results":
+            retrieved_contexts.append(str(msg.content))
+        elif getattr(msg, "name", None) == "websearch":
+            retrieved_contexts.append(str(msg.content))
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+    retrieved_context_str = "\n\n".join(retrieved_contexts)
+
+    # Return both so your evals (especially Faithfulness) can use it!
+    return {
+        "answer": final_answer,
+        "context": retrieved_context_str
+    }
