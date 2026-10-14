@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexAI Assistant V2 - Advanced Legal AI Platform</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        legal: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43',
+                            950: '#071321',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css?v=5">
+</head>
+<body class="bg-gray-50 dark:bg-legal-950 text-gray-900 dark:text-gray-100 h-screen flex overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="w-80 bg-white dark:bg-legal-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transition-all duration-300 z-20">
+        <!-- Sidebar Header -->
+        <div class="p-5 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-scale-balanced text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-sm tracking-wide">LexAI Assistant</h1>
+                    <span class="text-xs text-emerald-500 font-semibold flex items-center gap-1.5 mt-0.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> FastAPI ReAct Active
+                    </span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- New Chat Button -->
+        <div class="p-4">
+            <button onclick="startNewChat()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-2xl shadow-md shadow-blue-500/15 transition flex items-center justify-center gap-2 text-sm">
+                <i class="fa-solid fa-plus text-xs"></i> New Legal Inquiry
+            </button>
+        </div>
+
+        <!-- Preset Prompt Suggestions -->
+        <div class="px-4 py-2 flex-1 overflow-y-auto space-y-4">
+            <div>
+                <h2 class="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5 px-1">Suggested Inquiries</h2>
+                <div class="space-y-2">
+                    <button onclick="usePreset(this)" data-prompt="What are the essential grounds and conditions for granting bail under Section 439?" class="w-full text-left text-xs bg-gray-50 dark:bg-legal-800/60 hover:bg-gray-100 dark:hover:bg-legal-800 p-3 rounded-2xl text-gray-700 dark:text-gray-200 transition border border-gray-100 dark:border-legal-700/50 flex items-start gap-2.5">
+                        <i class="fa-solid fa-gavel text-blue-500 mt-0.5 shrink-0"></i>
+                        <span class="line-clamp-2">Bail conditions under Section 439 CrPC</span>
+                    </button>
+                    <button onclick="usePreset(this)" data-prompt="Summarize recent precedents regarding cyber crime and digital evidence admissibility." class="w-full text-left text-xs bg-gray-50 dark:bg-legal-800/60 hover:bg-gray-100 dark:hover:bg-legal-800 p-3 rounded-2xl text-gray-700 dark:text-gray-200 transition border border-gray-100 dark:border-legal-700/50 flex items-start gap-2.5">
+                        <i class="fa-solid fa-shield-halved text-indigo-500 mt-0.5 shrink-0"></i>
+                        <span class="line-clamp-2">Cyber crime & digital evidence rulings</span>
+                    </button>
+                    <button onclick="usePreset(this)" data-prompt="What are the legal remedies available for breach of commercial contracts?" class="w-full text-left text-xs bg-gray-50 dark:bg-legal-800/60 hover:bg-gray-100 dark:hover:bg-legal-800 p-3 rounded-2xl text-gray-700 dark:text-gray-200 transition border border-gray-100 dark:border-legal-700/50 flex items-start gap-2.5">
+                        <i class="fa-solid fa-file-contract text-emerald-500 mt-0.5 shrink-0"></i>
+                        <span class="line-clamp-2">Commercial contract breach remedies</span>
+                    </button>
+                    <button onclick="usePreset(this)" data-prompt="Explain the doctrine of judicial review in landmark constitutional cases." class="w-full text-left text-xs bg-gray-50 dark:bg-legal-800/60 hover:bg-gray-100 dark:hover:bg-legal-800 p-3 rounded-2xl text-gray-700 dark:text-gray-200 transition border border-gray-100 dark:border-legal-700/50 flex items-start gap-2.5">
+                        <i class="fa-solid fa-landmark text-amber-500 mt-0.5 shrink-0"></i>
+                        <span class="line-clamp-2">Doctrine of judicial review</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div>
+                <h2 class="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5 px-1">Recent Sessions</h2>
+                <div id="historyList" class="space-y-1">
+                    <div class="text-xs text-gray-400 italic px-2 py-3">No recent inquiry sessions yet.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Footer / Settings -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 bg-gray-50/50 dark:bg-legal-950/30">
+            <div class="flex items-center gap-2 truncate">
+                <i class="fa-solid fa-server text-blue-500"></i>
+                <span id="apiStatusText" class="truncate font-semibold">Checking API...</span>
+            </div>
+            <button onclick="openSettingsModal()" class="hover:text-gray-700 dark:hover:text-gray-200 p-1.5 rounded-xl hover:bg-gray-200 dark:hover:bg-legal-800 transition" title="API Settings">
+                <i class="fa-solid fa-gear text-sm"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CHAT AREA -->
+    <main class="flex-1 flex flex-col bg-gray-50 dark:bg-legal-950 relative h-full overflow-hidden">
+
+        <!-- Top Bar -->
+        <header class="h-16 bg-white/80 dark:bg-legal-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-6 flex items-center justify-between z-10 shadow-xs">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleSidebar()" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mr-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div>
+                    <h2 class="font-bold text-sm sm:text-base flex items-center gap-2">
+                        <span>Legal Intelligence & Case Analysis</span>
+                        <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full tracking-wider">v2.0 ReAct</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="/docs" target="_blank" class="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-xs font-semibold rounded-xl transition text-blue-600 dark:text-blue-400 flex items-center gap-1.5 border border-blue-200/50 dark:border-blue-900/50" title="Swagger API Docs">
+                    <i class="fa-solid fa-book"></i> API Docs
+                </a>
+                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-gray-100 dark:bg-legal-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-legal-700 transition shadow-xs" title="Toggle Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="clearChat()" class="px-3 py-1.5 bg-gray-100 dark:bg-legal-800 hover:bg-gray-200 dark:hover:bg-legal-700 text-xs font-semibold rounded-xl transition text-gray-700 dark:text-gray-300 flex items-center gap-1.5 shadow-xs">
+                    <i class="fa-solid fa-trash-can"></i> Clear
+                </button>
+            </div>
+        </header>
+
+        <!-- Messages Scroll Area -->
+        <div id="chatContainer" class="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 max-w-5xl mx-auto w-full flex flex-col justify-start">
+            <!-- Welcome State / Hero Banner -->
+            <div id="welcomeBanner" class="text-center py-16 px-4 max-w-2xl mx-auto my-auto">
+                <div class="w-20 h-20 bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-500/10 text-3xl">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">Legal AI Assistant V2</h2>
+                <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
+                    Advanced constitutional & statutory analysis powered by LangGraph ReAct agents, MMR vector retrieval, and NeMo guardrails.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-medium">
+                    <div class="bg-white dark:bg-legal-900 border border-gray-200 dark:border-gray-800 p-3.5 rounded-2xl shadow-sm flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="text-left truncate">
+                            <div class="font-bold text-gray-900 dark:text-white">MMR Search</div>
+                            <div class="text-gray-400">Contextual retrieval</div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-legal-900 border border-gray-200 dark:border-gray-800 p-3.5 rounded-2xl shadow-sm flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="text-left truncate">
+                            <div class="font-bold text-gray-900 dark:text-white">Guardrails</div>
+                            <div class="text-gray-400">Safe legal reasoning</div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-legal-900 border border-gray-200 dark:border-gray-800 p-3.5 rounded-2xl shadow-sm flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div class="text-left truncate">
+                            <div class="font-bold text-gray-900 dark:text-white">ReAct Agent</div>
+                            <div class="text-gray-400">Multi-step analysis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="typingIndicator" class="hidden px-6 py-3 max-w-5xl mx-auto w-full">
+            <div class="flex items-center space-x-3 bg-white dark:bg-legal-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 shadow-sm w-fit">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs shadow-sm">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="flex space-x-1.5 items-center">
+                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                    <span class="text-xs font-medium text-gray-400 ml-2">Agent querying vector store & analyzing case law...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Footer Area -->
+        <div class="p-4 sm:p-6 bg-white/80 dark:bg-legal-900/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 shadow-xl">
+            <div class="max-w-5xl mx-auto">
+                <form id="chatForm" onsubmit="handleSendMessage(event)" class="relative flex items-center">
+                    <textarea
+                        id="queryInput"
+                        rows="1"
+                        placeholder="Ask a legal query, enter case facts, or request statutory interpretation..."
+                        class="w-full bg-gray-100 dark:bg-legal-800 border border-gray-200 dark:border-gray-700/80 rounded-3xl py-4 pl-5 pr-28 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white resize-none max-h-36 shadow-inner transition"
+                        onkeydown="handleKeyDown(event)"
+                        oninput="autoResize(this)"
+                    ></textarea>
+                    <div class="absolute right-3 flex items-center space-x-2">
+                        <button type="submit" id="sendBtn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-blue-500/20 transition transform active:scale-95">
+                            <i class="fa-solid fa-paper-plane text-sm"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="flex items-center justify-between mt-2.5 text-xs text-gray-400 px-2">
+                    <span>Press <kbd class="px-1.5 py-0.5 bg-gray-200 dark:bg-legal-800 rounded font-mono text-gray-600 dark:text-gray-300">Enter</kbd> to send, <kbd class="px-1.5 py-0.5 bg-gray-200 dark:bg-legal-800 rounded font-mono text-gray-600 dark:text-gray-300">Shift + Enter</kbd> for new line.</span>
+                    <span id="endpointDisplay" class="font-mono text-gray-500">API: http://localhost:8000/legal_assistant</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settingsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white dark:bg-legal-900 border border-gray-200 dark:border-gray-800 rounded-3xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-5">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-gear text-blue-500"></i> FastAPI Endpoint Configuration
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1.5">Legal Assistant API URL</label>
+                    <input type="text" id="apiUrlInput" value="http://localhost:8000/legal_assistant" class="w-full bg-gray-100 dark:bg-legal-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1.5">Health Check URL</label>
+                    <input type="text" id="apiHealthInput" value="http://localhost:8000/health" class="w-full bg-gray-100 dark:bg-legal-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white font-mono">
+                </div>
+                <div class="pt-3 flex items-center justify-end space-x-3">
+                    <button onclick="closeSettingsModal()" class="px-5 py-2.5 bg-gray-200 dark:bg-legal-800 hover:bg-gray-300 dark:hover:bg-legal-700 text-sm font-semibold rounded-2xl transition">Cancel</button>
+                    <button onclick="saveSettings()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-2xl shadow-md transition">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/script.js?v=5"></script>
+</body>
+</html>

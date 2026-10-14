@@ -3,7 +3,8 @@ import re
 from typing import Optional
 from nemoguardrails import RailsConfig, LLMRails
 from nemoguardrails.actions import action
-from Legal_graph.Agent.models import openrouter_model
+# from Legal_graph.Agent.models import openrouter_model
+from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -70,7 +71,7 @@ def build_rails(llm) -> LLMRails:
     rails.register_action(detect_pii)
     return rails
 
-llm = openrouter_model('openai/gpt-4o-mini')
+llm = ChatGroq(model = 'openai/gpt-oss-20b')
 
 rails = build_rails(llm)
 

@@ -13,7 +13,7 @@ def websearch(query):
         topic='general',
     )
     response = tool.invoke({'query': query})
-    return response[:700]
+    return response
     
     # return {'retriever_docs' : tool.invoke({'query': query}) , 'tools_used': ['websearch']}
 

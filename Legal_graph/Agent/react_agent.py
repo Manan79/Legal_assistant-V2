@@ -17,6 +17,7 @@ from Legal_graph.Prompts.System_prompt import (
 )
 from Legal_graph.tools.vectorstore_tool import get_retrieved_results
 from Legal_graph.tools.websearch_tool import websearch
+from langchain_google_genai import ChatGoogleGenerativeAI
 from Legal_graph.Gaurdrails.gaurdrails import rails, parse_nemo_response
 
 
@@ -68,9 +69,9 @@ async def main_react_agent(query: str):
     tools = [get_retrieved_results, websearch]
     agent = create_agent(
         # model_name='deepseek/deepseek-v4.1-flash' , tencent/hy-mt2-30b-a3b
-        model= openai_model(),
+        model= ChatGoogleGenerativeAI(model = 'gemini-3.5-flash-lite'),
         tools=tools,
-        system_prompt=system_prompt,
+        system_prompt=system_prompt
         
     )
 
