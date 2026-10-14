@@ -70,6 +70,8 @@ def build_rails(llm) -> LLMRails:
     rails.register_action(detect_pii)
     return rails
 
+llm = openrouter_model('openai/gpt-4o-mini')
 
-llm   = openrouter_model()
 rails = build_rails(llm)
+
+print(rails)

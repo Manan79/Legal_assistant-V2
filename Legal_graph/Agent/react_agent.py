@@ -38,26 +38,30 @@ async def check_guardrails(user_message: str):
     - should_continue=True  → query passed, invoke the agent.
     - should_continue=False → blocked or scripted dialog, print response_text.
     """
-    nemo_resp = await rails.generate_async(
-        messages=[{"role": "user", "content": user_message}]
-    )
-    text, blocked, reason, is_dialog, needs_rag = parse_nemo_response(nemo_resp)
+    try:
+        nemo_resp = await rails.generate_async(
+            messages=[{"role": "user", "content": user_message}]
+        )
+        text, blocked, reason, is_dialog, needs_rag = parse_nemo_response(nemo_resp)
 
-    if blocked:
-        label = reason or "UNKNOWN"
-        return False, f"⛔ Blocked ({label}): {text}"
+        if blocked:
+            label = reason or "UNKNOWN"
+            return False, f"Blocked ({label}): {text}"
 
-    if is_dialog:
-        return False, text
+        if is_dialog:
+            return False, text
 
-    # QUERY_PASSED or unrecognised → let the agent handle it
-    return True, None
+        # QUERY_PASSED or unrecognised → let the agent handle it
+        return True, None
+    except Exception as e:
+        print(f"Guardrails execution error: {e}")
+        # Fail open gracefully so FastAPI requests don't return 500
+        return True, None
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 async def main_react_agent(query: str):
-    print("Using System prompt Version 2")
     system_prompt = PROMPT_VERSIONS['v1']
 
     # Build the ReAct agent
@@ -67,16 +71,21 @@ async def main_react_agent(query: str):
         model= openai_model(),
         tools=tools,
         system_prompt=system_prompt,
-        # config={"max_iterations": 2}
         
     )
 
     # Step 1: Guardrails check
-    # should_continue, guard_response = await check_guardrails(query)
-    # if not should_continue:
-    #     # Return the error message instead of nothing
-    #     return guard_response
+    should_continue, guard_response = await check_guardrails(query)
+    print(should_continue , guard_response)
+    if not should_continue:
+        print("Guardrails invoked")
+        # Return the error message instead of nothing
+        return {
+        "answer": guard_response,
+        "context": should_continue
+    }
 
+    print("Using System prompt Version 2")
     # Step 2: Invoke the ReAct agent (query passed guardrails)
     response = agent.invoke(
         {"messages": [{"role": "user", "content": query}]}
@@ -93,12 +102,12 @@ async def main_react_agent(query: str):
             retrieved_contexts.append(str(msg.content))
 
 
-    retrieved_context_str = "\n\n".join(retrieved_contexts)
+    # retrieved_context_str = "\n\n".join(retrieved_contexts)
 
     # Return both so your evals (especially Faithfulness) can use it!
     return {
         "answer": final_answer,
-        "context": retrieved_context_str
+        "context": retrieved_contexts
     }
 
 
