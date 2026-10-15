@@ -14,7 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from Legal_graph.Agent.react_agent import main_react_agent
 from pydantic import BaseModel, Field
-# from typing import Optional, Dict, Any
+from typing import Optional
 from datetime import datetime
 import uvicorn
 
@@ -76,11 +76,12 @@ def health():
 class LegalQueryRequest(BaseModel):
     """Request model for legal queries"""
     query: str = Field(..., min_length=1, description="Your legal query or question")
+    thread_id: Optional[str] = Field(None, description="Conversation thread ID for checkpointer memory")
 
 
 @app.post("/legal_assistant", tags=["Legal Assistant"])
 async def legal_assistant(request: LegalQueryRequest):
-    response = await main_react_agent(request.query)
+    response = await main_react_agent(request.query, request.thread_id)
     print(response)
     return {
             "status": "success",

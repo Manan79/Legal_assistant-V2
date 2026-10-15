@@ -6,6 +6,9 @@ let chatHistory = [];
 let API_URL = localStorage.getItem('lexai_api_url') || 'http://localhost:8000/legal_assistant';
 let HEALTH_URL = localStorage.getItem('lexai_health_url') || 'http://localhost:8000/health';
 
+// Generate a unique thread ID for each conversation session
+let currentThreadId = crypto.randomUUID();
+
 document.addEventListener('DOMContentLoaded', () => {
     const apiUrlInput = document.getElementById('apiUrlInput');
     const apiHealthInput = document.getElementById('apiHealthInput');
@@ -93,6 +96,8 @@ function usePreset(btn) {
 
 function startNewChat() {
     chatHistory = [];
+    currentThreadId = crypto.randomUUID();
+    console.log("New conversation thread:", currentThreadId);
     const container = document.getElementById('chatContainer');
     if (container) {
         container.innerHTML = `
@@ -206,7 +211,7 @@ async function handleSendMessage(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ query: query })
+            body: JSON.stringify({ query: query, thread_id: currentThreadId })
         });
 
         if (!response.ok) {

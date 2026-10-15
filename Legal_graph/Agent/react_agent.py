@@ -9,7 +9,8 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from langchain.agents import create_agent
-from Legal_graph.Agent.models import openrouter_model, openai_model
+# from Legal_graph.Agent.models import openrouter_model, openai_model
+from langgraph.checkpoint.memory import InMemorySaver
 from Legal_graph.Prompts.System_prompt import (
     LEGAL_SYSTEM_PROMPT_V1,
     LEGAL_SYSTEM_PROMPT_V2,
@@ -62,17 +63,18 @@ async def check_guardrails(user_message: str):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-async def main_react_agent(query: str):
+async def main_react_agent(query: str, thread_id: str):
     system_prompt = PROMPT_VERSIONS['v1']
 
     # Build the ReAct agent
     tools = [get_retrieved_results, websearch]
+    checkpointer = InMemorySaver()
     agent = create_agent(
         # model_name='deepseek/deepseek-v4.1-flash' , tencent/hy-mt2-30b-a3b
         model= ChatGoogleGenerativeAI(model = 'gemini-3.5-flash-lite'),
         tools=tools,
-        system_prompt=system_prompt
-        
+        system_prompt=system_prompt,
+        checkpointer=checkpointer  
     )
 
     # Step 1: Guardrails check
@@ -87,11 +89,12 @@ async def main_react_agent(query: str):
     }
 
     print("Using System prompt Version 2")
-    # Step 2: Invoke the ReAct agent (query passed guardrails)
+
+    config = {"configurable": {"thread_id": thread_id or "7"}}
     response = agent.invoke(
-        {"messages": [{"role": "user", "content": query}]}
+        {"messages": [{"role": "user", "content": query}]},
+        config=config
     )
-     # 1. Extract the final answer
     final_answer = response["messages"][-1].content
 
     # 2. Extract retrieved docs from ToolMessage
