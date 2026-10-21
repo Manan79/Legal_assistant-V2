@@ -85,7 +85,7 @@ def retrieve_documents(query: str, k: int = 5, search_type: str = "mmr") -> str:
 
 
 @tool
-def get_retrieved_results(query: str, k: int = 5) -> str:
+def get_retrieved_results(query: str, k: int = 4) -> str:
     """This tool is used for retrieving results from the vector database using MMR for diverse legal context.
     Args:
         query: The search query string.
@@ -97,7 +97,7 @@ def get_retrieved_results(query: str, k: int = 5) -> str:
 if __name__ == "__main__":
     test_query = "Abdul Nassar vs State Of Kerala"
     print(f"Testing retriever with query: '{test_query}'")
-    res = retrieve_documents(query=test_query, k=5)
+    res = retrieve_documents(query=test_query, k=3)
     print("Result snippet:\n", res)
 
 

@@ -82,7 +82,7 @@ class LegalQueryRequest(BaseModel):
 @app.post("/legal_assistant", tags=["Legal Assistant"])
 async def legal_assistant(request: LegalQueryRequest):
     response = await main_react_agent(request.query, request.thread_id)
-    print(response)
+    # print(response)
     return {
             "status": "success",
             "query": request.query,
