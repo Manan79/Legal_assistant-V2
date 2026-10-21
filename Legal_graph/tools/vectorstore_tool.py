@@ -19,7 +19,9 @@ embeddings = OpenAIEmbeddings(
 
 sparse_embeddings = FastEmbedSparse(model_name="Qdrant/bm25")
 
-client = QdrantClient(url="http://localhost:6333")
+qdrant_host = os.environ.get("QDRANT_HOST", "localhost")
+qdrant_port = os.environ.get("QDRANT_PORT", "6333")
+client = QdrantClient(url=f"http://{qdrant_host}:{qdrant_port}")
 vector_store = QdrantVectorStore(
     client=client,
     collection_name="LegalDocs_collection",

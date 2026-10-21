@@ -10,7 +10,9 @@ from langchain_openai import OpenAIEmbeddings
 import os
 load_dotenv()
 
-client = QdrantClient(url="http://localhost:6333")
+qdrant_host = os.environ.get("QDRANT_HOST", "localhost")
+qdrant_port = os.environ.get("QDRANT_PORT", "6333")
+client = QdrantClient(url=f"http://{qdrant_host}:{qdrant_port}")
 # client.create_collection(
 #     collection_name="LegalDocs_collection",
 #     vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
