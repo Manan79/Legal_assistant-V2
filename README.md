@@ -15,7 +15,7 @@ An enterprise-grade, production-ready AI Legal Assistant specialized in Indian s
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        NeMo Guardrails Gateway                         │
-│   (PII Detection ── Off-topic Filtering ── Jailbreak Prevention)       │
+│   (Semantic Safety Classification ── PII Detection ── Jailbreak Defenses)│
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │ (If Query Passed)
                                     ▼
@@ -105,75 +105,65 @@ Our automated evaluation pipeline tests the agent across 10 repetitions per conf
 - **Faithfulness** peaked at **0.82** when combining web search with RAG context (Experiment #3), though with higher latency and error rate due to external API calls.
 - **Retrieval Relevance** reached a consistent **1.00** across all optimized retriever runs using MMR diversity reranking.
 
+#### LangSmith Experiment Comparison Dashboard
+![Experiment Results](docs/assets/experiment%20results.png)
+*Comparison across multiple evaluation runs tracking feedback scores (accuracy, faithfulness, legal correctness, retrieval relevance), latency, token consumption, and cost.*
+
+#### LangSmith Traces & Monitoring
+![Traces](docs/assets/traces.png)
+*Detailed trace monitoring showing model calls distribution, tool invocation breakdown (`get_retrieved_results`, `tavily_search`, `websearch`), error rates, and total cost tracking.*
+
 ---
 
-## 🧠 1. Agent Architecture & ReAct Loop
+## 🧠 1. Agent Architecture & ReAct Workflow
 
-The core agent (`Legal_graph/Agent/react_agent.py`) is built using **LangGraph** and implements a **ReAct (Reasoning + Acting)** paradigm:
+The core agent (`Legal_graph/Agent/react_agent.py`) is built using **LangGraph** and implements a multi-turn **ReAct (Reasoning + Acting)** execution graph:
 1. **Guardrails Interception**: Incoming queries are screened by NeMo Guardrails before agent execution.
-2. **Reasoning Step**: The model analyzes the legal question and decides whether to invoke retrieval tools or web search.
-3. **Tool Execution**: Calls `get_retrieved_results` (vector search) or `websearch`.
-4. **Observation & Synthesis**: Synthesizes retrieved judgments, statutes, and provisions into a structured legal brief.
-
-### Model Integration (`Legal_graph/Agent/models.py`)
-- Configured to support multi-provider LLMs (**Google Gemini 3.5 Flash Lite**, **OpenAI GPT-4o-mini**, **Azure/Foundry models**, and **OpenRouter**).
-- Temperature set to `0.4` for balanced legal precision and explanatory fluency.
+2. **Conversation Threading (`thread_id`)**: Utilizes LangGraph's `InMemorySaver` checkpointer with dynamic UUID generation on frontend inquiry resets, isolating multi-turn chat history per session.
+3. **Reasoning Step**: The model analyzes the legal question and decides whether to invoke retrieval tools or web search.
+4. **Tool Execution**: Calls `get_retrieved_results` (vector search) or `websearch`.
+5. **Observation & Synthesis**: Synthesizes retrieved judgments, statutes, and provisions into a structured legal brief.
 
 ---
 
-## 🔍 2. Vector Database & Hybrid Retrieval
-
-Legal documents (Supreme Court judgments, statutes) undergo a rigorous ingestion pipeline:
-1. **PDF Extraction (`pdf_to_texts.py`)**: Converted using `pymupdf4llm` to preserve markdown structure (headers, clauses) while cleaning artifacts, horizontal rules, and page numbers.
-2. **Hybrid Chunking & Enrichment (`database_creation.py`)**:
-   - Markdown header splitting (`#`, `##`, `###`) to respect legal document hierarchy.
-   - Recursive character text splitting (chunk size: 2000, overlap: 300).
-   - Metadata enrichment: case name extraction, chunk indices, and hierarchical header breadcrumbs.
-3. **Qdrant Vector Store (`vectorstore_tool.py`)**:
-   - **Dense Embeddings**: `BAAI/bge-m3` via OpenRouter.
-   - **Sparse Embeddings**: `Qdrant/bm25` (FastEmbedSparse) for keyword matching.
-   - **Retrieval Mode**: Hybrid search (`RetrievalMode.HYBRID`).
-   - **MMR Diversification**: Maximal Marginal Relevance (`search_type="mmr"`, `lambda_mult=0.5`, `fetch_k = k * 4`) balances relevance with diverse case perspectives, eliminating redundant chunks from the same judgment section.
-
----
-
-## 🛠️ 3. Agent Tools
-
-- **`get_retrieved_results(query, k=5)`**: Queries the Qdrant hybrid vector store using MMR retrieval. Cleans HTML/Markdown artifacts and returns rich contextual legal excerpts with source provenance.
-- **`websearch(query)`**: Integrates **TavilySearch** to fetch real-time legal updates, recent Supreme Court notifications, and legislative announcements when vector retrieval is insufficient.
-
----
-
-## 🛡️ 4. NeMo Guardrails & Safety
+## 🛡️ 2. NeMo Guardrails & Semantic Safety
 
 Implemented via **NeMo Guardrails** (`Legal_graph/Gaurdrails/gaurdrails.py` and `colang_rules.py`):
-- **PII Detection**: Automatically scans input messages for emails, phone numbers, SSNs, API keys, and credit cards using regex action `detect_pii`.
-- **Off-Topic Blocking**: Refuses non-legal queries (cooking, coding, weather, jokes, general trivia) with professional redirection.
-- **Jailbreak Protection**: Defends against prompt injection, role override, and DAN ("Do Anything Now") attacks.
-- **Confidential Data Filtering**: Blocks queries requesting internal HR records, employee salaries, or performance reviews.
-- **Scripted Greetings**: Handles casual greetings instantly without wasting LLM token budget.
+- **Semantic Safety Classification (`classify_input_safety`)**: Uses an LLM security classifier to inspect user intent, categorizing inputs into `SAFE`, `BLOCK_JAILBREAK`, `BLOCK_OFF_TOPIC`, or `GREETING`. This prevents paraphrased bypasses (e.g. *"brew me a coffee"*, *"disregard prior constraints"*).
+- **PII Detection (`detect_pii`)**: Automatically scans input messages for emails, phone numbers, SSNs, API keys, and credit cards using regex patterns.
+- **Off-Topic & Jailbreak Defenses**: Strictly blocks non-legal queries and prompt injection attempts (such as DAN mode or system prompt overrides).
 
 ---
 
-## 🖥️ 5. FastAPI Backend & Modern Frontend UI
+## 🐳 3. Docker & Production Deployment Strategy
 
-### Backend (`Legal_graph/Backend/main.py`)
-- Built with **FastAPI** featuring CORS middleware, static file mounting (`/static`), and OpenAPI documentation (`/docs`).
-- **`POST /legal_assistant`**: Accepts a `LegalQueryRequest`, executes guardrails and the ReAct agent, and returns:
-  ```json
-  {
-      "status": "success",
-      "query": "...",
-      "response": "...",
-      "retrived context": [...],
-      "timestamp": "..."
-  }
-  ```
+The project is containerized for production readiness using Docker and Docker Compose:
+- **`Dockerfile`**: Packages the Python 3.11 runtime, system dependencies, and installs `requirements.txt` layers efficiently.
+- **`docker-compose.yml`**: Orchestrates the FastAPI backend container while linking dynamically to your running Qdrant vector database via `host.docker.internal:6333`.
+- **Docker Hub Publishing**: You can push pre-built images (`docker push <username>/legal-ai-backend:latest`) to deploy seamlessly across cloud servers without compiling code on production hosts.
 
-### Frontend (`Legal_graph/frontend/`)
-- **`index.html`**: Professional single-page application styled with Tailwind CSS (light/dark theme support, sidebar with suggested legal inquiries & recent history, interactive settings modal).
-- **`script.js`**: Dynamic state management, robust `marked.js` markdown rendering (safely handling strings, arrays, and objects), API health checking, clipboard copying, and **collapsible retrieved legal context source drawers**.
-- **`style.css`**: Glassmorphic panels, custom scrollbars, and typography optimized with *Plus Jakarta Sans* and *JetBrains Mono*.
+---
+
+## 🖥️ 4. Modern Web UI & Interactive Experience
+
+The platform provides a responsive, professional single-page web application served directly by FastAPI (`http://localhost:8000/`):
+- **Welcome & Hero State**: Clean, modern light-mode interface featuring quick-start preset legal inquiries (Bail conditions under CrPC, Cyber crime rulings, Commercial contract remedies, Doctrine of judicial review), live API connection status indicators, and dark/light theme toggling.
+- **Structured Legal Intelligence**: Generates legally precise Markdown briefs with structured headings, numbered lists, and statutory citations.
+- **Expandable Retrieved Legal Context Drawer**: Users can inspect the exact underlying Supreme Court precedent chunks retrieved via Qdrant MMR hybrid search (`Source Precedent Chunk #1`, `Vector MMR`, case citations, and textual evidence).
+
+### 📸 Frontend Demo Screenshots
+
+#### 1. Landing Page & Welcome Dashboard
+![Frontend UI](docs/assets/frontend.png)
+*The modern light-mode web interface featuring preset legal inquiry cards, active FastAPI connection status, and sidebar navigation.*
+
+#### 2. Structured Legal ReAct Answer
+![Legal Response](docs/assets/response.png)
+*Formatted markdown answer breaking down complex statutory interpretation and legal provisions with clear headings and numbered lists.*
+
+#### 3. Expandable Retrieved Legal Context & Sources Drawer
+![Retrieved Context](docs/assets/context.png)
+*Interactive drawer exposing exact precedent chunks and vector MMR source excerpts retrieved from Qdrant.*
 
 ---
 
@@ -200,37 +190,17 @@ LANGSMITH_PROJECT_NAME=Legal_AI_Evals_V2
 FAST_MODEL=openai/gpt-4o-mini
 ```
 
-### 3. Start Qdrant Vector Database
-Ensure Qdrant is running locally on port 6333:
+### 3. Run with Docker Compose
 ```bash
-docker run -p 6333:6333 -p 6334:6334 qdrant/qdrant
+docker compose up --build -d --remove-orphans
 ```
-
-### 4. Run the FastAPI Application
-```bash
-python Legal_graph/Backend/main.py
-```
-Open your browser at **`http://localhost:8000/`** to access the web UI, or explore Swagger docs at **`http://localhost:8000/docs`**.
-
----
-
-## 🧪 Running Tests & Evaluations
-
-- **Test Hybrid Retriever**:
-  ```bash
-  python Legal_graph/testing/test_retriever_suite.py
-  ```
-- **Test Guardrails**:
-  ```bash
-  python Legal_graph/testing/test_guardrails_script.py
-  ```
-- **Run LangSmith Evaluations**:
-  ```bash
-  python Legal_graph/testing/Eval_testing.py
-  ```
+Access your web app at **`http://localhost:8000/`**.
 
 ---
 
 ## 👥 Authors & Attribution
 
-Developed with precision for advanced legal AI applications.
+ Developed by Manan Sood.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+
