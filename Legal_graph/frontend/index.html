@@ -37,15 +37,15 @@
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/style.css?v=5">
+    <link rel="stylesheet" href="/static/style.css?v=8">
 </head>
-<body class="bg-gray-50 dark:bg-legal-950 text-gray-900 dark:text-gray-100 h-screen flex overflow-hidden relative">
+<body class="bg-gray-50 dark:bg-legal-950 text-gray-900 dark:text-gray-100 h-screen w-full flex flex-col md:flex-row overflow-hidden relative">
 
     <!-- Mobile Sidebar Backdrop -->
-    <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-20 hidden md:hidden"></div>
+    <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-30 hidden md:hidden"></div>
 
     <!-- SIDEBAR -->
-    <aside id="sidebar" class="fixed md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 w-80 bg-white dark:bg-legal-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transition-transform duration-300 ease-in-out z-30 shadow-2xl md:shadow-none">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 sm:w-80 bg-white dark:bg-legal-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transition-transform duration-300 ease-in-out md:translate-x-0 -translate-x-full shadow-2xl md:shadow-none shrink-0">
         <!-- Sidebar Header -->
         <div class="p-5 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -117,30 +117,28 @@
     </aside>
 
     <!-- MAIN CHAT AREA -->
-    <main class="flex-1 flex flex-col bg-gray-50 dark:bg-legal-950 relative h-full overflow-hidden">
+    <main class="flex-1 min-w-0 w-full flex flex-col bg-gray-50 dark:bg-legal-950 relative h-screen md:h-full overflow-hidden">
 
         <!-- Top Bar -->
-        <header class="h-16 bg-white/80 dark:bg-legal-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-6 flex items-center justify-between z-10 shadow-xs">
-            <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mr-2">
-                    <i class="fa-solid fa-bars text-xl"></i>
+        <header class="h-16 bg-white/80 dark:bg-legal-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-3 sm:px-6 flex items-center justify-between z-10 shadow-xs">
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleSidebar()" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-lg"></i>
                 </button>
-                <div>
-                    <h2 class="font-bold text-sm sm:text-base flex items-center gap-2">
-                        <span>Legal Intelligence & Case Analysis</span>
-                        <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full tracking-wider">v2.0 ReAct</span>
-                    </h2>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-sm sm:text-base tracking-tight">LexAI Assistant</span>
+                    <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-[9px] uppercase font-bold px-2 py-0.5 rounded-full">v2.0</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
-                <a href="/docs" target="_blank" class="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-xs font-semibold rounded-xl transition text-blue-600 dark:text-blue-400 flex items-center gap-1.5 border border-blue-200/50 dark:border-blue-900/50" title="Swagger API Docs">
-                    <i class="fa-solid fa-book"></i> API Docs
+            <div class="flex items-center space-x-1.5 sm:space-x-2">
+                <a href="/docs" target="_blank" class="w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-xs font-semibold rounded-xl text-blue-600 dark:text-blue-400 flex items-center justify-center gap-1 border border-blue-200/50" title="API Docs">
+                    <i class="fa-solid fa-book text-xs"></i> <span class="hidden sm:inline">API</span>
                 </a>
-                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-gray-100 dark:bg-legal-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-legal-700 transition shadow-xs" title="Toggle Theme">
-                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                <button onclick="toggleDarkMode()" class="w-8 h-8 rounded-xl bg-gray-100 dark:bg-legal-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 transition" title="Toggle Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
                 </button>
-                <button onclick="clearChat()" class="px-3 py-1.5 bg-gray-100 dark:bg-legal-800 hover:bg-gray-200 dark:hover:bg-legal-700 text-xs font-semibold rounded-xl transition text-gray-700 dark:text-gray-300 flex items-center gap-1.5 shadow-xs">
-                    <i class="fa-solid fa-trash-can"></i> Clear
+                <button onclick="clearChat()" class="w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 bg-gray-100 dark:bg-legal-800 hover:bg-gray-200 text-xs font-semibold rounded-xl text-gray-700 dark:text-gray-300 flex items-center justify-center gap-1 transition" title="Clear Chat">
+                    <i class="fa-solid fa-trash-can text-xs"></i> <span class="hidden sm:inline">Clear</span>
                 </button>
             </div>
         </header>
@@ -152,8 +150,8 @@
                 <div class="w-20 h-20 bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-500/10 text-3xl">
                     <i class="fa-solid fa-scale-balanced"></i>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">Legal AI Assistant V2</h2>
-                <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
+                <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight mb-3">Legal AI Assistant V2</h2>
+                <p class="text-xs sm:text-base text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
                     Advanced constitutional & statutory analysis powered by LangGraph ReAct agents, MMR vector retrieval, and NeMo guardrails.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-medium">
@@ -221,10 +219,6 @@
                         </button>
                     </div>
                 </form>
-                <div class="flex items-center justify-between mt-2.5 text-xs text-gray-400 px-2">
-                    <span>Press <kbd class="px-1.5 py-0.5 bg-gray-200 dark:bg-legal-800 rounded font-mono text-gray-600 dark:text-gray-300">Enter</kbd> to send, <kbd class="px-1.5 py-0.5 bg-gray-200 dark:bg-legal-800 rounded font-mono text-gray-600 dark:text-gray-300">Shift + Enter</kbd> for new line.</span>
-                    <span id="endpointDisplay" class="font-mono text-gray-500">API: http://localhost:8000/legal_assistant</span>
-                </div>
             </div>
         </div>
     </main>
@@ -258,6 +252,6 @@
     </div>
 
     <!-- Custom JavaScript -->
-    <script src="/static/script.js?v=5"></script>
+    <script src="/static/script.js?v=8"></script>
 </body>
 </html>
