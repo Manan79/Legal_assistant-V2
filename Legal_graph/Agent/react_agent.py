@@ -20,8 +20,8 @@ from Legal_graph.tools.vectorstore_tool import get_retrieved_results
 from Legal_graph.tools.websearch_tool import websearch
 from langchain_google_genai import ChatGoogleGenerativeAI
 from Legal_graph.Gaurdrails.gaurdrails import rails, parse_nemo_response
-
-
+from dotenv import load_dotenv
+load_dotenv()
 # ── Prompt version selection (for evals) ─────────────────────────────────────
 
 PROMPT_VERSIONS = {
@@ -63,7 +63,7 @@ async def check_guardrails(user_message: str):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-async def main_react_agent(query: str, thread_id: str):
+async def main_react_agent(query: str, thread_id: str = None):
     system_prompt = PROMPT_VERSIONS['v1']
 
     # Build the ReAct agent
@@ -135,3 +135,7 @@ async def main_react_agent(query: str, thread_id: str):
 #         "answer": response.content,
 #         "context": retrieved_context_str
 #     }
+
+if __name__ == "__main__":
+    result = asyncio.run(main_react_agent(query="Hi can explain land acquisation act with the help of an example ?"))
+    print(result)

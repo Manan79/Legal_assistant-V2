@@ -3,11 +3,11 @@
  */
 
 let chatHistory = [];
-let API_URL = localStorage.getItem('lexai_api_url') || 'http://localhost:8000/legal_assistant';
-let HEALTH_URL = localStorage.getItem('lexai_health_url') || 'http://localhost:8000/health';
+let API_URL = localStorage.getItem('lexai_api_url') || 'https://legal-ai-backend-5ze6.onrender.com/legal_assistant';
+let HEALTH_URL = localStorage.getItem('lexai_health_url') || 'https://legal-ai-backend-5ze6.onrender.com/health';
 
 // Generate a unique thread ID for each conversation session
-let currentThreadId = crypto.randomUUID();
+let currentThreadId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : 'thread_' + Math.random().toString(36).substring(2, 15);
 
 document.addEventListener('DOMContentLoaded', () => {
     const apiUrlInput = document.getElementById('apiUrlInput');
@@ -68,7 +68,9 @@ function toggleDarkMode() {
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
     if (sidebar) sidebar.classList.toggle('-translate-x-full');
+    if (backdrop) backdrop.classList.toggle('hidden');
 }
 
 function autoResize(textarea) {
@@ -96,7 +98,7 @@ function usePreset(btn) {
 
 function startNewChat() {
     chatHistory = [];
-    currentThreadId = crypto.randomUUID();
+    currentThreadId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : 'thread_' + Math.random().toString(36).substring(2, 15);
     console.log("New conversation thread:", currentThreadId);
     const container = document.getElementById('chatContainer');
     if (container) {

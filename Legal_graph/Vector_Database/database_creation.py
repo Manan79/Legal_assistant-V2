@@ -10,9 +10,12 @@ from langchain_openai import OpenAIEmbeddings
 import os
 load_dotenv()
 
-qdrant_host = os.environ.get("QDRANT_HOST", "localhost")
-qdrant_port = os.environ.get("QDRANT_PORT", "6333")
-client = QdrantClient(url=f"http://{qdrant_host}:{qdrant_port}")
+qdrant_url = os.environ.get("QDRANT_URL")
+qdrant_api_key = os.environ.get("QDRANT_API_KEY")
+
+if qdrant_url:
+    client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
+
 # client.create_collection(
 #     collection_name="LegalDocs_collection",
 #     vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
@@ -33,7 +36,7 @@ sparse_embeddings = FastEmbedSparse(model_name="Qdrant/bm25")
 
 qdrant = QdrantVectorStore(
     client=client,
-    collection_name="LegalDocs_collection",
+    collection_name="LegalDocs",
     embedding=embeddings,
     sparse_embedding=sparse_embeddings,
     retrieval_mode=RetrievalMode.HYBRID,

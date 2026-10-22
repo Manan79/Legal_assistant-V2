@@ -19,12 +19,16 @@ embeddings = OpenAIEmbeddings(
 
 sparse_embeddings = FastEmbedSparse(model_name="Qdrant/bm25")
 
-qdrant_host = os.environ.get("QDRANT_HOST", "localhost")
-qdrant_port = os.environ.get("QDRANT_PORT", "6333")
-client = QdrantClient(url=f"http://{qdrant_host}:{qdrant_port}")
+client = QdrantClient(
+    url=os.environ["QDRANT_URL"],
+    api_key=os.environ["QDRANT_API_KEY"],
+)
+
+
+
 vector_store = QdrantVectorStore(
     client=client,
-    collection_name="LegalDocs_collection",
+    collection_name="LegalDocs",
     embedding=embeddings,
     sparse_embedding=sparse_embeddings,
     retrieval_mode=RetrievalMode.HYBRID,
@@ -81,6 +85,7 @@ def retrieve_documents(query: str, k: int = 5, search_type: str = "mmr") -> str:
             clean_legal_text(doc.page_content)
             for doc in docs
         )
+        print("Vectorstore responded")
         return context
     except Exception as e:
         return f"Error retrieving results from vector store: {str(e)}"
